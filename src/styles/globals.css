@@ -220,6 +220,12 @@ select {
   outline-offset: 2px;
 }
 
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 1280px;
+  }
+}
+
 @media (max-width: 1024px) {
   .grid-3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

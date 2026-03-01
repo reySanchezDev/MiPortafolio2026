@@ -5,6 +5,7 @@ import {
   siDocker,
   siDotnet,
   siFlutter,
+  siGithubcopilot,
   siGit,
   siHtml5,
   siJavascript,
@@ -20,6 +21,8 @@ interface IconData {
   hex: string;
 }
 
+type LinkKind = 'core' | 'platform' | 'ecosystem';
+
 interface TechNode {
   id: string;
   label: string;
@@ -28,57 +31,222 @@ interface TechNode {
   size: number;
   dx: number;
   dy: number;
+  labelDx?: number;
+  labelDy?: number;
+  showOnMobile?: boolean;
   icon?: IconData;
+  iconSrc?: string;
+  brandHex?: string;
   fallback?: string;
 }
 
+interface TechLink {
+  from: string;
+  to: string;
+  kind: LinkKind;
+}
+
 const nodes: TechNode[] = [
-  { id: 'flutter', label: 'Flutter', x: 18, y: 22, size: 52, dx: -6, dy: -4, icon: siFlutter },
-  { id: 'astro', label: 'Astro', x: 34, y: 14, size: 46, dx: 7, dy: -6, icon: siAstro },
-  { id: 'html', label: 'HTML5', x: 52, y: 12, size: 44, dx: 6, dy: -5, icon: siHtml5 },
-  { id: 'css', label: 'CSS', x: 68, y: 18, size: 40, dx: -5, dy: -4, icon: siCss },
-  { id: 'js', label: 'JavaScript', x: 80, y: 29, size: 46, dx: 5, dy: 4, icon: siJavascript },
-  { id: 'ts', label: 'TypeScript', x: 84, y: 48, size: 42, dx: 6, dy: 4, icon: siTypescript },
-  { id: 'dotnet', label: '.NET', x: 74, y: 66, size: 48, dx: -7, dy: 5, icon: siDotnet },
-  { id: 'java', label: 'Java', x: 58, y: 80, size: 44, dx: -5, dy: 7, icon: siOpenjdk },
-  { id: 'postgres', label: 'PostgreSQL', x: 36, y: 82, size: 44, dx: 5, dy: 6, icon: siPostgresql },
-  { id: 'sqlite', label: 'SQLite', x: 18, y: 72, size: 40, dx: -5, dy: 5, icon: siSqlite },
-  { id: 'docker', label: 'Docker', x: 10, y: 52, size: 44, dx: -6, dy: -3, icon: siDocker },
-  { id: 'git', label: 'Git', x: 9, y: 35, size: 38, dx: -5, dy: 3, icon: siGit },
-  { id: 'n8n', label: 'n8n', x: 47, y: 52, size: 50, dx: 0, dy: 0, icon: siN8n },
-  { id: 'azure', label: 'Azure', x: 62, y: 40, size: 42, dx: 5, dy: -3, fallback: 'AZ' },
+  { id: 'flutter', label: 'Flutter', x: 15, y: 23, size: 50, dx: -6, dy: -4, icon: siFlutter },
+  { id: 'astro', label: 'Astro', x: 31, y: 14, size: 46, dx: 6, dy: -5, icon: siAstro },
+  { id: 'html', label: 'HTML5', x: 50, y: 11, size: 44, dx: 5, dy: -4, icon: siHtml5 },
+  { id: 'css', label: 'CSS', x: 67, y: 17, size: 40, dx: -4, dy: -3, icon: siCss },
+  { id: 'js', label: 'JavaScript', x: 84, y: 30, size: 46, dx: 4, dy: 3, icon: siJavascript },
+  { id: 'ts', label: 'TypeScript', x: 90, y: 48, size: 42, dx: 4, dy: 3, icon: siTypescript },
+  {
+    id: 'dotnet',
+    label: '.NET',
+    x: 70,
+    y: 76,
+    size: 48,
+    dx: -3,
+    dy: 2,
+    icon: siDotnet,
+    showOnMobile: true,
+  },
+  { id: 'java', label: 'Java', x: 58, y: 84, size: 44, dx: -4, dy: 4, icon: siOpenjdk },
+  { id: 'postgres', label: 'PostgreSQL', x: 35, y: 84, size: 44, dx: 4, dy: 4, icon: siPostgresql },
+  { id: 'sqlite', label: 'SQLite', x: 16, y: 73, size: 40, dx: -4, dy: 3, icon: siSqlite },
+  { id: 'docker', label: 'Docker', x: 9, y: 52, size: 44, dx: -4, dy: -2, icon: siDocker },
+  { id: 'git', label: 'Git', x: 9, y: 34, size: 38, dx: -3, dy: 2, icon: siGit },
+  {
+    id: 'chatfuel',
+    label: 'Chatfuel',
+    x: 41,
+    y: 56,
+    size: 50,
+    dx: -1,
+    dy: 1,
+    iconSrc: '/icons/brands/chatfuel.png',
+    brandHex: 'ff5d8f',
+    fallback: 'CF',
+    showOnMobile: true,
+  },
+  { id: 'n8n', label: 'n8n', x: 34, y: 61, size: 44, dx: -2, dy: 2, icon: siN8n, showOnMobile: true },
+  {
+    id: 'microsoft',
+    label: 'Microsoft',
+    x: 50,
+    y: 50,
+    size: 48,
+    dx: 1,
+    dy: 1,
+    iconSrc: '/icons/brands/microsoft.svg',
+    brandHex: '00a4ef',
+    fallback: 'MS',
+    showOnMobile: true,
+  },
+  {
+    id: 'azure',
+    label: 'Azure',
+    x: 61,
+    y: 44,
+    size: 42,
+    dx: 2,
+    dy: -2,
+    iconSrc: '/icons/brands/azure.svg',
+    brandHex: '0078d4',
+    fallback: 'AZ',
+    showOnMobile: true,
+  },
+  {
+    id: 'powerautomate',
+    label: 'Power Automate',
+    x: 74,
+    y: 38,
+    size: 34,
+    dx: 1,
+    dy: -1,
+    labelDx: 1,
+    labelDy: -1,
+    iconSrc: '/icons/brands/power-automate.svg',
+    brandHex: '2d7dfa',
+    fallback: 'PA',
+    showOnMobile: true,
+  },
+  {
+    id: 'outlook',
+    label: 'Outlook',
+    x: 91,
+    y: 60,
+    size: 34,
+    dx: 1,
+    dy: 1,
+    labelDx: 1,
+    labelDy: 1,
+    iconSrc: '/icons/brands/outlook.svg',
+    brandHex: '0078d4',
+    fallback: 'OL',
+    showOnMobile: true,
+  },
+  {
+    id: 'teams',
+    label: 'Teams',
+    x: 82,
+    y: 77,
+    size: 34,
+    dx: 1,
+    dy: 1,
+    labelDx: 0,
+    labelDy: 2,
+    iconSrc: '/icons/brands/teams.svg',
+    brandHex: '6264a7',
+    fallback: 'TM',
+    showOnMobile: true,
+  },
+  {
+    id: 'copilot',
+    label: 'Copilot',
+    x: 57,
+    y: 27,
+    size: 34,
+    dx: 1,
+    dy: -1,
+    fallback: 'CP',
+    icon: siGithubcopilot,
+    showOnMobile: true,
+  },
+  {
+    id: 'al',
+    label: 'AL',
+    x: 55,
+    y: 74,
+    size: 32,
+    dx: 1,
+    dy: 1,
+    labelDx: 0,
+    labelDy: -1,
+    iconSrc: '/icons/brands/al.svg',
+    brandHex: '00b7c3',
+    fallback: 'AL',
+    showOnMobile: true,
+  },
 ];
 
-const linkPairs: [string, string][] = [
-  ['flutter', 'astro'],
-  ['flutter', 'n8n'],
-  ['astro', 'html'],
-  ['html', 'css'],
-  ['css', 'js'],
-  ['js', 'ts'],
-  ['ts', 'dotnet'],
-  ['dotnet', 'java'],
-  ['dotnet', 'postgres'],
-  ['postgres', 'sqlite'],
-  ['sqlite', 'docker'],
-  ['docker', 'git'],
-  ['n8n', 'azure'],
-  ['n8n', 'dotnet'],
-  ['n8n', 'postgres'],
-  ['azure', 'dotnet'],
+const techLinks: TechLink[] = [
+  { from: 'microsoft', to: 'azure', kind: 'core' },
+  { from: 'microsoft', to: 'teams', kind: 'core' },
+  { from: 'microsoft', to: 'outlook', kind: 'core' },
+  { from: 'microsoft', to: 'powerautomate', kind: 'core' },
+  { from: 'microsoft', to: 'copilot', kind: 'core' },
+  { from: 'microsoft', to: 'al', kind: 'core' },
+
+  { from: 'azure', to: 'dotnet', kind: 'platform' },
+  { from: 'chatfuel', to: 'n8n', kind: 'platform' },
+  { from: 'n8n', to: 'microsoft', kind: 'platform' },
+  { from: 'n8n', to: 'azure', kind: 'platform' },
+
+  { from: 'flutter', to: 'astro', kind: 'ecosystem' },
+  { from: 'astro', to: 'html', kind: 'ecosystem' },
+  { from: 'html', to: 'css', kind: 'ecosystem' },
+  { from: 'css', to: 'js', kind: 'ecosystem' },
+  { from: 'js', to: 'ts', kind: 'ecosystem' },
+  { from: 'ts', to: 'dotnet', kind: 'ecosystem' },
+  { from: 'dotnet', to: 'java', kind: 'ecosystem' },
+  { from: 'dotnet', to: 'postgres', kind: 'ecosystem' },
+  { from: 'postgres', to: 'sqlite', kind: 'ecosystem' },
+  { from: 'sqlite', to: 'docker', kind: 'ecosystem' },
+  { from: 'docker', to: 'git', kind: 'ecosystem' },
+  { from: 'flutter', to: 'n8n', kind: 'ecosystem' },
+  { from: 'chatfuel', to: 'microsoft', kind: 'ecosystem' },
+  { from: 'chatfuel', to: 'azure', kind: 'ecosystem' },
+  { from: 'n8n', to: 'dotnet', kind: 'ecosystem' },
+  { from: 'n8n', to: 'postgres', kind: 'ecosystem' },
+  { from: 'azure', to: 'powerautomate', kind: 'ecosystem' },
+  { from: 'powerautomate', to: 'outlook', kind: 'ecosystem' },
+  { from: 'teams', to: 'outlook', kind: 'ecosystem' },
+  { from: 'copilot', to: 'js', kind: 'ecosystem' },
+  { from: 'al', to: 'dotnet', kind: 'ecosystem' },
 ];
 
 const nodeMap = new Map(nodes.map((node) => [node.id, node]));
-const links = linkPairs
-  .map(([from, to]) => ({ from: nodeMap.get(from), to: nodeMap.get(to) }))
-  .filter((entry): entry is { from: TechNode; to: TechNode } => Boolean(entry.from && entry.to));
+const links = techLinks
+  .map((link) => ({ ...link, fromNode: nodeMap.get(link.from), toNode: nodeMap.get(link.to) }))
+  .filter(
+    (
+      entry,
+    ): entry is {
+      from: string;
+      to: string;
+      kind: LinkKind;
+      fromNode: TechNode;
+      toNode: TechNode;
+    } => Boolean(entry.fromNode && entry.toNode),
+  );
 ---
 
 <div class="constellation" aria-hidden="true" data-constellation>
   <svg class="link-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
     {
       links.map((link, index) => (
-        <line x1={link.from.x} y1={link.from.y} x2={link.to.x} y2={link.to.y} style={`--delay:${index * 90}ms`} />
+        <line
+          x1={link.fromNode.x}
+          y1={link.fromNode.y}
+          x2={link.toNode.x}
+          y2={link.toNode.y}
+          data-kind={link.kind}
+          style={`--delay:${index * 90}ms`}
+        />
       ))
     }
   </svg>
@@ -88,11 +256,21 @@ const links = linkPairs
   {
     nodes.map((node, index) => (
       <article
-        class="node"
-        style={`--x:${node.x};--y:${node.y};--size:${node.size}px;--dx:${node.dx};--dy:${node.dy};--delay:${index * 80}ms;--brand:#${node.icon?.hex ?? '2f7df6'}`}
+        class:list={[
+          'node',
+          {
+            compact: node.size <= 34,
+            hub: node.id === 'microsoft',
+            subhub: node.id === 'azure',
+            'mobile-hidden': !node.showOnMobile,
+          },
+        ]}
+        style={`--x:${node.x};--y:${node.y};--size:${node.size}px;--dx:${node.dx};--dy:${node.dy};--delay:${index * 80}ms;--brand:#${node.icon?.hex ?? node.brandHex ?? '2f7df6'};--label-dx:${node.labelDx ?? 0}px;--label-dy:${node.labelDy ?? 0}px`}
       >
         <span class="glyph" aria-hidden="true">
-          {node.icon ? (
+          {node.iconSrc ? (
+            <img src={node.iconSrc} alt="" loading="lazy" decoding="async" />
+          ) : node.icon ? (
             <svg viewBox="0 0 24 24" role="img" aria-label={node.label}>
               <path d={node.icon.path}></path>
             </svg>
@@ -131,10 +309,10 @@ const links = linkPairs
   .core-ring {
     position: absolute;
     inset: 50% auto auto 50%;
-    width: 180px;
-    height: 180px;
+    width: 186px;
+    height: 186px;
     border-radius: 999px;
-    border: 1px dashed color-mix(in srgb, var(--accent) 34%, transparent);
+    border: 1px dashed color-mix(in srgb, var(--accent) 36%, transparent);
     transform: translate(-50%, -50%);
     animation: spin-ring 14s linear infinite;
     pointer-events: none;
@@ -169,19 +347,32 @@ const links = linkPairs
 
   .link-layer line {
     fill: none;
-    stroke: color-mix(in srgb, var(--accent-2) 30%, var(--accent) 70%);
-    stroke-width: 0.32;
+    stroke: color-mix(in srgb, var(--accent-2) 22%, var(--accent) 78%);
+    stroke-width: 0.24;
     stroke-linecap: round;
-    stroke-dasharray: 1.2 1.6;
+    stroke-dasharray: 1.2 1.8;
     stroke-dashoffset: 8;
     opacity: 0;
     transition: opacity 700ms var(--motion-ease);
   }
 
   .constellation.is-ready .link-layer line {
-    opacity: 0.76;
+    opacity: 0.4;
     animation: line-flow 3.4s linear infinite;
     animation-delay: calc(var(--delay) + 1.05s);
+  }
+
+  .constellation.is-ready .link-layer line[data-kind='platform'] {
+    opacity: 0.62;
+    stroke-width: 0.34;
+    stroke: color-mix(in srgb, var(--accent-2) 36%, var(--accent) 64%);
+  }
+
+  .constellation.is-ready .link-layer line[data-kind='core'] {
+    opacity: 0.92;
+    stroke-width: 0.5;
+    stroke-dasharray: 1.1 1.5;
+    stroke: color-mix(in srgb, var(--accent-2) 48%, var(--accent) 52%);
   }
 
   .node {
@@ -228,10 +419,29 @@ const links = linkPairs
     animation: glyph-breathe 4.2s var(--motion-ease) infinite;
   }
 
+  .node.hub .glyph {
+    border-color: color-mix(in srgb, var(--accent-2) 55%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent-2) 34%, transparent),
+      0 14px 26px rgba(7, 23, 42, 0.28);
+  }
+
+  .node.subhub .glyph {
+    border-color: color-mix(in srgb, var(--accent) 58%, transparent);
+  }
+
   .glyph svg {
     width: 54%;
     height: 54%;
     fill: color-mix(in srgb, var(--brand) 82%, white 18%);
+  }
+
+  .glyph img {
+    width: 62%;
+    height: 62%;
+    object-fit: contain;
+    border-radius: 4px;
+    filter: drop-shadow(0 1px 1px rgba(6, 16, 28, 0.26));
   }
 
   .glyph strong {
@@ -247,6 +457,21 @@ const links = linkPairs
     text-transform: uppercase;
     letter-spacing: 0.08em;
     text-align: center;
+    line-height: 1.15;
+    max-width: 7.2rem;
+    text-wrap: balance;
+    transform: translate(var(--label-dx), var(--label-dy));
+  }
+
+  .node.compact .label {
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+    max-width: 4.5rem;
+  }
+
+  .node.compact .glyph img {
+    width: 66%;
+    height: 66%;
   }
 
   @keyframes node-drift {
@@ -284,10 +509,29 @@ const links = linkPairs
     }
   }
 
+  @media (max-width: 768px) {
+    .constellation {
+      min-height: 320px;
+    }
+
+    .node.mobile-hidden {
+      display: none;
+    }
+
+    .link-layer line[data-kind='ecosystem'] {
+      display: none;
+    }
+
+    .node.compact .label {
+      font-size: 0.5rem;
+      max-width: 4.1rem;
+    }
+  }
+
   @media (max-width: 560px) {
     .label {
-      font-size: 0.6rem;
-      letter-spacing: 0.06em;
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
     }
 
     .node {

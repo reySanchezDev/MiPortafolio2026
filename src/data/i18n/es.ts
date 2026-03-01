@@ -86,7 +86,7 @@ export const es: Dictionary = {
   },
   home: {
     hero: {
-      title: 'Desarrollador fullstack para productos listos para produccion: UX Flutter-first, APIs confiables e integraciones reales.',
+      title: 'Desarrollador fullstack listos para produccion: UX Flutter-first, APIs confiables e integraciones reales.',
       subline: 'Ingenieria orientada a negocio: arquitectura, ejecucion y resultados.',
       paragraph:
         '15 anos en TI entre soporte, operaciones, QA, desarrollo y arquitectura de sistemas. Construyo software que funciona bajo presion operativa.',

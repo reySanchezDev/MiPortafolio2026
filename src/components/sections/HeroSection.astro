@@ -200,6 +200,13 @@ const {
     }
   }
 
+  @media (min-width: 1440px) {
+    .hero-grid {
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: clamp(1.5rem, 2.8vw, 2.6rem);
+    }
+  }
+
   @media (max-width: 960px) {
     .hero-grid {
       grid-template-columns: 1fr;
