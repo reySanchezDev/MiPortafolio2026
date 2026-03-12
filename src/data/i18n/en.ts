@@ -84,6 +84,7 @@ export const en = {
     hero: {
       title: 'Production-ready fullstack developer: Flutter-first UX, reliable APIs, and real integrations.',
       subline: 'Business-minded engineering: architecture, execution, and outcomes.',
+      constellationTitle: 'My stack',
       paragraph:
         '15 years in IT across support, operations, QA, development, and system architecture. I build software that survives real-world operations.',
       proofChips: ['Flutter-first', 'Fullstack', 'ERP/POS Integrations', 'Offline-ready'],

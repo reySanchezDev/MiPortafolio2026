@@ -1,6 +1,10 @@
 ---
 import { resolveTechBrand, techLinks, techNodes, type LinkKind, type TechNode } from '../../data/tech-stack';
 
+interface Props {
+  title?: string;
+}
+
 const nodeMap = new Map(techNodes.map((node) => [node.id, node]));
 const links = techLinks
   .map((link) => ({ ...link, fromNode: nodeMap.get(link.from), toNode: nodeMap.get(link.to) }))
@@ -15,55 +19,63 @@ const links = techLinks
       toNode: TechNode;
     } => Boolean(entry.fromNode && entry.toNode),
   );
+
+const { title = '' } = Astro.props;
 ---
 
 <div class="constellation" aria-hidden="true" data-constellation>
-  <svg class="link-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
+  {title ? (
+    <div class="constellation-head">
+      <p>{title}</p>
+    </div>
+  ) : null}
+
+    <svg class="link-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
+      {
+        links.map((link, index) => (
+          <line
+            x1={link.fromNode.x}
+            y1={link.fromNode.y}
+            x2={link.toNode.x}
+            y2={link.toNode.y}
+            data-kind={link.kind}
+            style={`--delay:${index * 90}ms`}
+          />
+        ))
+      }
+    </svg>
+
+    <div class="core-ring"></div>
+
     {
-      links.map((link, index) => (
-        <line
-          x1={link.fromNode.x}
-          y1={link.fromNode.y}
-          x2={link.toNode.x}
-          y2={link.toNode.y}
-          data-kind={link.kind}
-          style={`--delay:${index * 90}ms`}
-        />
+      techNodes.map((node, index) => (
+        <article
+          class:list={[
+            'node',
+            {
+              compact: node.size <= 34,
+              hub: node.id === 'microsoft',
+              subhub: node.id === 'azure',
+              'mobile-hidden': !node.showOnMobile,
+            },
+          ]}
+          style={`--x:${node.x};--y:${node.y};--size:${node.size}px;--dx:${node.dx};--dy:${node.dy};--delay:${index * 80}ms;--brand:${resolveTechBrand(node)};--label-dx:${node.labelDx ?? 0}px;--label-dy:${node.labelDy ?? 0}px`}
+        >
+          <span class="glyph" aria-hidden="true">
+            {node.iconSrc ? (
+              <img src={node.iconSrc} alt="" loading="lazy" decoding="async" />
+            ) : node.icon ? (
+              <svg viewBox="0 0 24 24" role="img" aria-label={node.label}>
+                <path d={node.icon.path}></path>
+              </svg>
+            ) : (
+              <strong>{node.fallback}</strong>
+            )}
+          </span>
+          <span class="label">{node.label}</span>
+        </article>
       ))
     }
-  </svg>
-
-  <div class="core-ring"></div>
-
-  {
-    techNodes.map((node, index) => (
-      <article
-        class:list={[
-          'node',
-          {
-            compact: node.size <= 34,
-            hub: node.id === 'microsoft',
-            subhub: node.id === 'azure',
-            'mobile-hidden': !node.showOnMobile,
-          },
-        ]}
-        style={`--x:${node.x};--y:${node.y};--size:${node.size}px;--dx:${node.dx};--dy:${node.dy};--delay:${index * 80}ms;--brand:${resolveTechBrand(node)};--label-dx:${node.labelDx ?? 0}px;--label-dy:${node.labelDy ?? 0}px`}
-      >
-        <span class="glyph" aria-hidden="true">
-          {node.iconSrc ? (
-            <img src={node.iconSrc} alt="" loading="lazy" decoding="async" />
-          ) : node.icon ? (
-            <svg viewBox="0 0 24 24" role="img" aria-label={node.label}>
-              <path d={node.icon.path}></path>
-            </svg>
-          ) : (
-            <strong>{node.fallback}</strong>
-          )}
-        </span>
-        <span class="label">{node.label}</span>
-      </article>
-    ))
-  }
 </div>
 
 <script is:inline>
@@ -76,6 +88,26 @@ const links = techLinks
 </script>
 
 <style>
+  .constellation-head {
+    position: absolute;
+    inset: 1rem auto auto 1rem;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
+  }
+
+  .constellation-head p {
+    margin: 0;
+    display: block;
+    color: var(--text-0);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
   .constellation {
     position: relative;
     min-height: clamp(300px, 38vw, 390px);
@@ -311,6 +343,10 @@ const links = techLinks
   }
 
   @media (max-width: 560px) {
+    .constellation-head p {
+      font-size: 0.9rem;
+    }
+
     .label {
       font-size: 0.58rem;
       letter-spacing: 0.05em;

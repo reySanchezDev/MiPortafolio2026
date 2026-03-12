@@ -16,6 +16,7 @@ interface Props {
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   panelTitle?: string;
+  constellationTitle?: string;
   highlights?: Highlight[];
 }
 
@@ -27,6 +28,7 @@ const {
   primaryCta,
   secondaryCta,
   panelTitle = '',
+  constellationTitle = '',
   highlights = [],
 } = Astro.props;
 ---
@@ -55,7 +57,7 @@ const {
     </div>
 
     <aside class="hero-panel reveal" data-reveal>
-      <TechConstellation />
+      <TechConstellation title={constellationTitle} />
 
       <div class="stats-shell surface">
         <div class="panel-head">
