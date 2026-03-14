@@ -67,8 +67,8 @@ const panelRows = [
 
           <div class="panel-grid">
             {
-              panelRows.map((item) => (
-                <article class="panel-row" style={`--brand:${item.brand}`}>
+              panelRows.map((item, index) => (
+                <article class="panel-row" style={`--brand:${item.brand};--wave-delay:${index * 0.45}s`}>
                   <span class="panel-dot" aria-hidden="true"></span>
                   <div class="stack-4">
                     <h2>{item.title}</h2>
@@ -200,12 +200,35 @@ const panelRows = [
   }
 
   .panel-dot {
+    position: relative;
     width: 0.78rem;
     height: 0.78rem;
     border-radius: 999px;
     margin-top: 0.22rem;
     background: var(--brand);
-    box-shadow: 0 0 0 6px color-mix(in srgb, var(--brand) 16%, transparent);
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--brand) 14%, transparent),
+      0 0 18px color-mix(in srgb, var(--brand) 38%, transparent);
+  }
+
+  .panel-dot::before,
+  .panel-dot::after {
+    content: '';
+    position: absolute;
+    inset: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    border: 1px solid color-mix(in srgb, var(--brand) 62%, transparent);
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0;
+    animation: contact-wave 2.8s ease-out infinite;
+    animation-delay: var(--wave-delay, 0s);
+    pointer-events: none;
+  }
+
+  .panel-dot::after {
+    animation-delay: calc(var(--wave-delay, 0s) + 1.4s);
   }
 
   .panel-row h2 {
@@ -215,6 +238,30 @@ const panelRows = [
   .panel-row p {
     color: var(--card-text-1);
     font-size: 0.92rem;
+  }
+
+  @keyframes contact-wave {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.35);
+    }
+
+    18% {
+      opacity: 0.75;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(3.35);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel-dot::before,
+    .panel-dot::after {
+      animation: none;
+      opacity: 0;
+    }
   }
 
   @media (max-width: 980px) {

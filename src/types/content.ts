@@ -51,6 +51,12 @@ export interface CaseStudy {
   lessons: LocalizedText[];
 }
 
+export interface ProjectVideo {
+  title: LocalizedText;
+  caption: LocalizedText;
+  embedUrl: string;
+}
+
 export interface ProjectLinks {
   demo?: string;
   repo?: string;
@@ -69,6 +75,7 @@ export interface Project {
   architecture: LocalizedText[];
   impact: LocalizedText[];
   caseStudy: CaseStudy;
+  video?: ProjectVideo;
   links: ProjectLinks;
 }
 

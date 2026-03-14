@@ -32,6 +32,7 @@ export const en = {
   links: {
     relatedProject: 'Related project',
     readCaseStudy: 'Read case study',
+    watchVideo: 'Watch video',
     demo: 'Demo',
     repo: 'Repo',
   },
@@ -166,14 +167,14 @@ export const en = {
       title: 'System snapshots',
       items: [
         {
-          title: 'Flutter app -> API -> DB -> integrations',
+          title: 'Quantix -> C# client -> .NET -> Azure SQL',
           decisions: [
-            'Contract-first app/backend boundary.',
-            'Severity-based operational alert routing.',
-            'Idempotent retries for external integrations.',
-            'Correlation IDs across the full flow.',
+            'Multi-company and multi-branch model inside one shared platform.',
+            'Core modules for inventory, billing, reporting, and catalogs.',
+            'Azure SQL Database as the central cloud data layer.',
+            'Company-level configuration without duplicating the system.',
           ],
-          anchor: 'retail-ops-command-center',
+          anchor: 'quantix-multi-company-core',
         },
         {
           title: 'Offline queue -> batch sync -> reconciliation',

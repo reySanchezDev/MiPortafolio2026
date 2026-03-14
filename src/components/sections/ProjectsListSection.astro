@@ -88,6 +88,11 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
                   <a href={`#${project.links.caseStudyAnchor}`} class="case-link">
                     {dict.links.readCaseStudy}
                   </a>
+                  {project.video && (
+                    <button type="button" class="inline-video-trigger" data-video-trigger>
+                      {dict.links.watchVideo}
+                    </button>
+                  )}
                   {project.links.demo && (
                     <Button href={project.links.demo} variant="secondary" target="_blank">
                       {dict.links.demo}
@@ -102,6 +107,30 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
 
                 <details class="case-study" data-case-study>
                   <summary>{dict.links.readCaseStudy}</summary>
+                  {project.video && (
+                    <section class="case-study-media" data-case-study-media>
+                      <div class="case-study-media-head">
+                        <div class="stack-3">
+                          <p class="case-study-media-kicker">{dict.links.watchVideo}</p>
+                          <h4>{translateText(project.video.title, locale)}</h4>
+                          <p>{translateText(project.video.caption, locale)}</p>
+                        </div>
+                      </div>
+
+                      <div class="case-study-video-frame">
+                        <iframe
+                          src={project.video.embedUrl}
+                          data-video-iframe
+                          data-base-src={project.video.embedUrl}
+                          title={translateText(project.video.title, locale)}
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                          referrerpolicy="strict-origin-when-cross-origin"
+                        ></iframe>
+                      </div>
+                    </section>
+                  )}
                   <div class="case-study-body">
                     <section>
                       <h4>{dict.labels.context}</h4>
@@ -153,6 +182,8 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
   if (root) {
     const filterButtons = root.querySelectorAll('[data-filter-button]');
     const cards = root.querySelectorAll('[data-project-card]');
+    const caseLinks = root.querySelectorAll('.case-link');
+    const videoTriggers = root.querySelectorAll('[data-video-trigger]');
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-filter');
@@ -164,6 +195,54 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
           card.classList.toggle('is-hidden', !show);
         });
       });
+    });
+    caseLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const card = link.closest('[data-project-card]');
+        const details = card?.querySelector('[data-case-study]');
+        if (details instanceof HTMLDetailsElement) {
+          details.open = true;
+          details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+    videoTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const card = trigger.closest('[data-project-card]');
+        const details = card?.querySelector('[data-case-study]');
+        const media = card?.querySelector('[data-case-study-media]');
+        const iframe = card?.querySelector('[data-video-iframe]');
+        if (details instanceof HTMLDetailsElement) {
+          details.open = true;
+        }
+        if (iframe instanceof HTMLIFrameElement) {
+          const baseSrc = iframe.dataset.baseSrc ?? iframe.src;
+          const autoplaySrc = `${baseSrc}${baseSrc.includes('?') ? '&' : '?'}autoplay=1`;
+          if (iframe.src !== autoplaySrc) {
+            iframe.src = autoplaySrc;
+          }
+        }
+        if (media instanceof HTMLElement) {
+          requestAnimationFrame(() => {
+            media.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        }
+      });
+    });
+    cards.forEach((card) => {
+      const details = card.querySelector('[data-case-study]');
+      const iframe = card.querySelector('[data-video-iframe]');
+      if (details instanceof HTMLDetailsElement && iframe instanceof HTMLIFrameElement) {
+        details.addEventListener('toggle', () => {
+          if (!details.open) {
+            const baseSrc = iframe.dataset.baseSrc ?? iframe.src;
+            if (iframe.src !== baseSrc) {
+              iframe.src = baseSrc;
+            }
+          }
+        });
+      }
     });
   }
 </script>
@@ -256,6 +335,36 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     gap: var(--space-3);
   }
 
+  .inline-video-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--stroke);
+    background: transparent;
+    color: var(--text-1);
+    padding: 0.72rem 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      border-color var(--motion-fast) var(--motion-ease),
+      background-color var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease);
+  }
+
+  .inline-video-trigger:hover {
+    transform: translateY(-2px);
+    color: var(--text-0);
+    border-color: var(--stroke-strong);
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+  }
+
+  .inline-video-trigger:active {
+    transform: translateY(0) scale(0.98);
+  }
+
   .case-link {
     text-decoration: underline transparent;
     text-underline-offset: 4px;
@@ -281,6 +390,65 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     color: var(--text-0);
   }
 
+  .case-study-media {
+    margin-top: var(--space-4);
+    padding: clamp(0.95rem, 2vw, 1.15rem);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--stroke));
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--accent) 10%, var(--card)),
+        color-mix(in srgb, var(--accent-2) 8%, var(--card)) 62%,
+        color-mix(in srgb, var(--card) 92%, transparent)
+      );
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .case-study-media-head {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .case-study-media-kicker {
+    margin: 0;
+    color: color-mix(in srgb, var(--accent-2) 62%, var(--text-1));
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-study-media-head h4 {
+    font-size: 1.05rem;
+  }
+
+  .case-study-media-head p:last-child {
+    max-width: 70ch;
+  }
+
+  .case-study-video-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--radius-md) - 0.15rem);
+    border: 1px solid color-mix(in srgb, var(--stroke-strong) 84%, transparent);
+    background: #08111f;
+    aspect-ratio: 16 / 9;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 20px 40px rgba(2, 10, 25, 0.22);
+  }
+
+  .case-study-video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   .case-study-body {
     margin-top: var(--space-4);
     display: grid;
@@ -304,6 +472,10 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     .project-grid,
     .case-study-body {
       grid-template-columns: 1fr;
+    }
+
+    .case-study-media-head {
+      flex-direction: column;
     }
   }
 </style>

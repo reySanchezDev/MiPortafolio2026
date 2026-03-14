@@ -36,6 +36,7 @@ export const es: Dictionary = {
   links: {
     relatedProject: 'Proyecto relacionado',
     readCaseStudy: 'Leer caso',
+    watchVideo: 'Ver video',
     demo: 'Demo',
     repo: 'Repo',
   },
@@ -170,14 +171,14 @@ export const es: Dictionary = {
       title: 'Snapshots de sistema',
       items: [
         {
-          title: 'Flutter app -> API -> DB -> integraciones',
+          title: 'Quantix -> cliente C# -> .NET -> Azure SQL',
           decisions: [
-            'Limite contract-first entre app y backend.',
-            'Alertas operativas por severidad.',
-            'Reintentos idempotentes en integraciones externas.',
-            'Correlation IDs en todo el flujo.',
+            'Modelo multiempresa y multisucursal en una sola plataforma.',
+            'Modulos core para inventario, facturacion, reporteria y catalogos.',
+            'Azure SQL Database como base central en la nube.',
+            'Configuracion por empresa sin duplicar el sistema.',
           ],
-          anchor: 'retail-ops-command-center',
+          anchor: 'quantix-multi-company-core',
         },
         {
           title: 'Cola offline -> sync por lotes -> reconciliacion',

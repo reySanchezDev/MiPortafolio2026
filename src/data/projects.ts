@@ -2,110 +2,136 @@ import type { Project } from '../types/content';
 
 export const projects: Project[] = [
   {
-    id: 'retail-ops-command-center',
+    id: 'quantix-multi-company-core',
     featured: true,
-    categories: ['flutter', 'backend', 'integrations'],
+    categories: ['backend'],
     title: {
-      en: 'Retail Operations Command Center',
-      es: 'Centro de Control para Operaciones Retail',
+      en: 'Quantix | Multi-Company Inventory and Billing Core',
+      es: 'Quantix | Core Multiempresa para Inventario y Facturacion',
     },
     oneLiner: {
-      en: 'Flutter operations platform connected to ERP, POS, and support flows.',
-      es: 'Plataforma operativa en Flutter conectada con ERP, POS y flujos de soporte.',
+      en: 'C# and .NET system on Azure SQL for operating multiple companies and branches from one shared platform.',
+      es: 'Sistema en C# y .NET sobre Azure SQL para operar multiples empresas y sucursales desde una sola plataforma.',
     },
     problem: {
-      en: 'Multi-branch teams worked with fragmented views, delayed updates, and manual escalations.',
-      es: 'Equipos multi-sucursal operaban con vistas fragmentadas, actualizaciones tardias y escalamiento manual.',
+      en: 'Organizations with multiple companies and branches needed inventory, billing, reporting, and configuration under one operational core without fragmenting data or setup.',
+      es: 'Empresas con varias razones sociales y sucursales necesitaban inventario, facturacion, reporteria y configuracion dentro de un mismo nucleo operativo, sin fragmentar datos ni administracion.',
     },
     roles: [
-      { en: 'System architecture', es: 'Arquitectura de sistema' },
-      { en: 'Flutter lead', es: 'Lider Flutter' },
-      { en: '.NET integration design', es: 'Diseno de integraciones .NET' },
+      { en: 'Solution architecture', es: 'Arquitectura de solucion' },
+      { en: 'C# / .NET implementation', es: 'Implementacion C# / .NET' },
+      { en: 'Multi-company model', es: 'Modelo multiempresa' },
     ],
-    stack: ['Flutter', '.NET 8', 'SQL Server', 'Azure', 'Business Central', 'LS Central'],
+    stack: ['C#', '.NET', 'Azure SQL Database'],
     architecture: [
       {
-        en: 'Feature-based Flutter architecture with strict boundaries between UI, domain, and infrastructure.',
-        es: 'Arquitectura Flutter por features con limites claros entre UI, dominio e infraestructura.',
+        en: 'Modular core for inventory, billing, reporting, catalogs, and configuration.',
+        es: 'Nucleo modular para inventario, facturacion, reporteria, catalogos y configuracion.',
       },
       {
-        en: 'Contract-first APIs for inventory, order status, and alerts consumed by store operations.',
-        es: 'APIs contract-first para inventario, estado de pedidos y alertas para operacion en tienda.',
+        en: 'Multi-company and multi-branch model with isolated operational context inside one shared platform.',
+        es: 'Modelo multiempresa y multisucursal con contexto operativo aislado dentro de una sola plataforma.',
       },
       {
-        en: 'Traceable operational flow with structured logs and correlation IDs.',
-        es: 'Flujo operativo trazable con logs estructurados y correlation IDs.',
+        en: 'Centralized persistence on Azure SQL Database for transactional consistency and consolidated visibility.',
+        es: 'Persistencia centralizada en Azure SQL Database para consistencia transaccional y visibilidad consolidada.',
       },
     ],
     impact: [
       {
-        en: 'Reduced incident triage time by consolidating operational visibility in one interface.',
-        es: 'Reduccion del tiempo de triage al consolidar visibilidad operativa en una sola interfaz.',
+        en: 'One installation can manage from one to many companies and their branches.',
+        es: 'Una sola instalacion puede administrar desde una hasta N empresas y sus sucursales.',
       },
       {
-        en: 'Improved store autonomy with near real-time process status.',
-        es: 'Mejora de autonomia en sucursales con estado de procesos casi en tiempo real.',
+        en: 'Inventory, billing, and reporting now run through a clearer shared daily workflow.',
+        es: 'Inventario, facturacion y reporteria ahora conviven en un flujo diario mucho mas claro.',
       },
       {
-        en: 'Safer releases through explicit integration contracts and staged rollout.',
-        es: 'Releases mas seguros mediante contratos explicitos y rollout por etapas.',
+        en: 'Operational support becomes simpler by sharing catalogs, configuration, and company-aware rules.',
+        es: 'El soporte operativo se simplifica al compartir catalogos, configuracion y reglas por empresa.',
       },
     ],
     caseStudy: {
       context: {
-        en: 'Designed for a retail environment where downtime quickly impacts sales and operations.',
-        es: 'Disenado para un entorno retail donde cualquier interrupcion impacta ventas y operacion.',
+        en: 'Quantix was built as a production system for businesses that need inventory and billing control across multiple companies and branches without duplicating platforms.',
+        es: 'Quantix se construyo como un sistema productivo para empresas que necesitan controlar inventario y facturacion en multiples companias y sucursales sin duplicar plataforma.',
       },
       constraints: [
         {
-          en: 'Legacy POS dependencies with mixed data quality across branches.',
-          es: 'Dependencias de POS legado con calidad de datos desigual entre sucursales.',
+          en: 'Each company had to coexist in the same system with its own rules, catalogs, and configuration.',
+          es: 'Cada empresa debia convivir en el mismo sistema con sus propias reglas, catalogos y configuracion.',
         },
         {
-          en: 'Need for progressive adoption without operational disruption.',
-          es: 'Necesidad de adopcion progresiva sin interrupcion operativa.',
+          en: 'Inventory and billing required consistent data and reliable responsiveness in daily operations.',
+          es: 'Inventario y facturacion exigian consistencia de datos y respuesta confiable en la operacion diaria.',
+        },
+        {
+          en: 'The platform had to grow by modules without turning the user experience into a fragmented system.',
+          es: 'La plataforma debia crecer por modulos sin convertir la experiencia en un sistema fragmentado.',
         },
       ],
       solution: [
         {
-          en: 'Introduced modular app boundaries and consistent error-handling across critical workflows.',
-          es: 'Se introdujeron limites modulares y manejo consistente de errores en flujos criticos.',
+          en: 'The platform was organized into inventory, billing, reporting, catalog, and configuration modules on top of a .NET backend.',
+          es: 'La plataforma se organizo en modulos de inventario, facturacion, reporteria, catalogos y configuracion sobre un backend .NET.',
         },
         {
-          en: 'Created an integration orchestration layer with safe retries and contract validation.',
-          es: 'Se creo una capa de orquestacion con reintentos seguros y validacion de contratos.',
+          en: 'The C# client was shaped around company and branch context so teams could navigate the same core without duplicated flows.',
+          es: 'La interfaz en C# se diseno alrededor del contexto por empresa y sucursal para recorrer el mismo nucleo sin duplicar flujos.',
+        },
+        {
+          en: 'The data layer was centralized on Azure SQL Database to preserve traceability, consistency, and consolidated reporting.',
+          es: 'La capa de datos se centralizo en Azure SQL Database para preservar trazabilidad, consistencia y reporteria consolidada.',
         },
       ],
       decisions: [
         {
-          en: 'Prioritized observability and idempotency over fast but fragile shortcuts.',
-          es: 'Se priorizo observabilidad e idempotencia sobre atajos rapidos pero fragiles.',
+          en: 'A shared multi-company core was prioritized over isolated customer-specific deployments.',
+          es: 'Se priorizo un nucleo compartido multiempresa sobre despliegues aislados por cliente.',
         },
         {
-          en: 'Used branch-aware telemetry to speed up root cause analysis.',
-          es: 'Se uso telemetria por sucursal para acelerar analisis de causa raiz.',
+          en: 'Company separation lived in the data and configuration model, not in separate application instances.',
+          es: 'La separacion por empresa se resolvio en el modelo de datos y configuracion, no en instancias separadas del sistema.',
+        },
+        {
+          en: 'Azure SQL Database was chosen to support transactional consistency and cloud-based operational scale.',
+          es: 'Se eligio Azure SQL Database para sostener consistencia transaccional y escalabilidad operativa en la nube.',
         },
       ],
       outcomes: [
         {
-          en: 'Operations gained a single source of truth for daily execution.',
-          es: 'Operaciones obtuvo una unica fuente de verdad para ejecucion diaria.',
+          en: 'Multiple companies now operate on one platform with branch-level control.',
+          es: 'Multiples empresas operan hoy sobre una misma plataforma con control por sucursal.',
         },
         {
-          en: 'Support teams resolved incidents faster with clear event traces.',
-          es: 'Soporte resolvio incidentes mas rapido con trazas de eventos claras.',
+          en: 'Critical modules share one source of data for inventory, billing, and lookup workflows.',
+          es: 'Los modulos criticos comparten una sola fuente de datos para inventario, facturacion y consulta.',
+        },
+        {
+          en: 'The system can expand with new catalogs, reports, and settings without breaking the operational core.',
+          es: 'El sistema puede crecer con nuevos catalogos, reportes y configuraciones sin romper el nucleo operativo.',
         },
       ],
       lessons: [
         {
-          en: 'Reliability is a product feature, not an afterthought.',
-          es: 'La confiabilidad es una funcionalidad del producto, no un extra.',
+          en: 'In multi-company systems, getting context and configuration right matters more than piling on screens.',
+          es: 'En sistemas multiempresa, modelar bien el contexto y la configuracion vale mas que acumular pantallas.',
         },
       ],
     },
+    video: {
+      title: {
+        en: 'Quantix in production',
+        es: 'Quantix en produccion',
+      },
+      caption: {
+        en: 'A real walkthrough of the system showing the multi-company operational core, billing flows, and daily management context.',
+        es: 'Recorrido real del sistema mostrando el nucleo operativo multiempresa, los flujos de facturacion y el contexto de gestion diaria.',
+      },
+      embedUrl: 'https://www.youtube-nocookie.com/embed/FL7aUb48rls?start=10&rel=0&modestbranding=1',
+    },
     links: {
-      caseStudyAnchor: 'retail-ops-command-center',
-      demo: 'https://github.com/',
+      caseStudyAnchor: 'quantix-multi-company-core',
     },
   },
   {
