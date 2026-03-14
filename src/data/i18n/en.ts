@@ -4,12 +4,14 @@ export const en = {
   otherLocaleName: 'Espanol',
   skipToContent: 'Skip to content',
   nav: {
+    overview: 'Overview',
     systems: 'Systems',
     flutter: 'Flutter',
     projects: 'Projects',
     contact: 'Contact',
   },
   ctas: {
+    resumePdf: 'CV PDF',
     schedule: 'Schedule a call',
     email: 'Email me',
     viewWork: 'View selected work',
@@ -48,35 +50,36 @@ export const en = {
     availability: 'Availability',
     languageSwitch: 'Switch language',
     themeToggle: 'Switch theme',
+    resumePdfSoon: 'PDF available soon',
     mobileMenu: 'Open menu',
     closeMenu: 'Close menu',
   },
   meta: {
     home: {
-      title: 'Reynaldo Sanchez | Fullstack Developer (Flutter-first)',
+      title: 'Reynaldo Sánchez | Fullstack Developer (Flutter-first)',
       description:
         'Fullstack developer focused on Flutter-first products, reliable APIs, and business-ready integrations.',
     },
     systems: {
-      title: 'Systems and Architecture | Reynaldo Sanchez',
+      title: 'Systems and Architecture | Reynaldo Sánchez',
       description:
         'How I design reliable systems: modular architecture, resilient integrations, and operational visibility.',
     },
     flutter: {
-      title: 'Flutter Expertise | Reynaldo Sanchez',
+      title: 'Flutter Expertise | Reynaldo Sánchez',
       description:
         'Flutter specialist with production experience in architecture, performance, and integration-heavy apps.',
     },
     projects: {
-      title: 'Selected Projects | Reynaldo Sanchez',
+      title: 'Selected Projects | Reynaldo Sánchez',
       description: 'Short case studies focused on architecture decisions, delivery execution, and business impact.',
     },
     contact: {
-      title: 'Work With Me | Reynaldo Sanchez',
+      title: 'Work With Me | Reynaldo Sánchez',
       description: 'Remote and international collaboration for Flutter-first, fullstack product delivery.',
     },
     notFound: {
-      title: 'Page not found | Reynaldo Sanchez',
+      title: 'Page not found | Reynaldo Sánchez',
       description: 'The page you are looking for is not available.',
     },
   },

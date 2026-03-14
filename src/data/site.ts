@@ -2,12 +2,13 @@ import type { SiteConfig } from '../types/content';
 
 export const siteConfig: SiteConfig = {
   siteUrl: process.env.SITE_URL ?? 'https://example.com',
-  brandName: 'Reynaldo Sanchez',
+  brandName: 'Reynaldo Sánchez',
   brandTagline: 'Building production-grade systems.',
   timezoneLabel: 'GMT-6',
   defaultLocale: 'en',
   locales: ['en', 'es'],
   nav: [
+    { key: 'overview', slug: '' },
     { key: 'systems', slug: 'systems' },
     { key: 'flutter', slug: 'flutter' },
     { key: 'projects', slug: 'projects' },

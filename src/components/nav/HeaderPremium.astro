@@ -6,6 +6,8 @@ import ThemeToggle from './ThemeToggle.astro';
 import { siteConfig } from '../../data/site';
 import type { Locale } from '../../types/content';
 import type { I18nDictionary } from '../../data/i18n';
+import pdfIcon from '../../../Recursos/pdf.png';
+import gmailIcon from '../../../Recursos/gmail.png';
 
 interface Props {
   locale: Locale;
@@ -15,11 +17,22 @@ interface Props {
 
 const { locale, pathname, dict } = Astro.props;
 
+const normalizePath = (value: string) => {
+  if (value === '/') return '/';
+  return value.replace(/\/+$/, '');
+};
+
+const localeRoot = `/${locale}`;
+const normalizedPathname = normalizePath(pathname);
 const navItems = siteConfig.nav.map((item) => ({
   ...item,
-  href: `/${locale}/${item.slug}`,
+  href: item.slug ? `/${locale}/${item.slug}` : localeRoot,
   label: dict.nav[item.key],
+  active: item.slug ? normalizedPathname.startsWith(`/${locale}/${item.slug}`) : normalizedPathname === localeRoot,
 }));
+
+const calendlyIconPath =
+  'M19.655 14.262c.281 0 .557.023.828.064 0 .005-.005.01-.005.014-.105.267-.234.534-.381.786l-1.219 2.106c-1.112 1.936-3.177 3.127-5.411 3.127h-2.432c-2.23 0-4.294-1.191-5.412-3.127l-1.218-2.106a6.251 6.251 0 0 1 0-6.252l1.218-2.106C6.736 4.832 8.8 3.641 11.035 3.641h2.432c2.23 0 4.294 1.191 5.411 3.127l1.219 2.106c.147.252.271.519.381.786 0 .004.005.009.005.014-.267.041-.543.064-.828.064-1.816 0-2.501-.607-3.291-1.306-.764-.676-1.711-1.517-3.44-1.517h-1.029c-1.251 0-2.387.455-3.2 1.278-.796.805-1.233 1.904-1.233 3.099v1.411c0 1.196.437 2.295 1.233 3.099.813.823 1.949 1.278 3.2 1.278h1.034c1.729 0 2.676-.841 3.439-1.517.791-.703 1.471-1.306 3.287-1.301Zm.005-3.237c.399 0 .794-.036 1.179-.11-.002-.004-.002-.01-.002-.014-.073-.414-.193-.823-.349-1.218.731-.12 1.407-.396 1.986-.819 0-.004-.005-.013-.005-.018-.331-1.085-.832-2.101-1.489-3.03-.649-.915-1.435-1.719-2.331-2.395-1.867-1.398-4.088-2.138-6.428-2.138-1.448 0-2.855.28-4.175.841-1.273.543-2.423 1.315-3.407 2.299S2.878 6.552 2.341 7.83c-.557 1.324-.842 2.726-.842 4.175 0 1.448.281 2.855.842 4.174.542 1.274 1.314 2.423 2.298 3.407s2.129 1.761 3.407 2.299c1.324.556 2.727.841 4.175.841 2.34 0 4.561-.74 6.428-2.137a10.815 10.815 0 0 0 2.331-2.396c.652-.929 1.158-1.949 1.489-3.03 0-.004.005-.014.005-.018-.579-.423-1.255-.699-1.986-.819.161-.395.276-.804.349-1.218.005-.009.005-.014.005-.023.869.166 1.692.506 2.404 1.035.685.505.552 1.075.446 1.416C22.184 20.437 17.619 24 12.221 24c-6.625 0-12-5.375-12-12s5.37-12 12-12c5.398 0 9.963 3.563 11.471 8.464.106.341.239.915-.446 1.421-.717.529-1.535.873-2.404 1.034.128.716.128 1.45 0 2.166-.387-.074-.782-.11-1.182-.11-4.184 0-3.968 2.823-6.736 2.823h-1.029c-1.899 0-3.15-1.357-3.15-3.095v-1.411c0-1.738 1.251-3.094 3.15-3.094h1.034c2.768 0 2.552 2.823 6.731 2.827Z';
 ---
 
 <header class="header" data-header>
@@ -35,7 +48,7 @@ const navItems = siteConfig.nav.map((item) => ({
     <nav class="desktop-nav" aria-label="Primary">
       {
         navItems.map((item) => (
-          <a class:list={['nav-link', { active: pathname.startsWith(item.href) }]} href={item.href}>
+          <a class:list={['nav-link', { active: item.active }]} href={item.href}>
             {item.label}
           </a>
         ))
@@ -46,11 +59,37 @@ const navItems = siteConfig.nav.map((item) => ({
       <LanguageSwitch locale={locale} pathname={pathname} label={dict.labels.languageSwitch} />
       <ThemeToggle label={dict.labels.themeToggle} />
       <div class="desktop-cta">
-        <Button href={siteConfig.contact.email} variant="secondary">
-          {dict.ctas.email}
+        <Button
+          variant="secondary"
+          className="header-cta header-cta--pdf header-cta--icon"
+          disabled={true}
+          ariaLabel={dict.labels.resumePdfSoon}
+          title={dict.labels.resumePdfSoon}
+        >
+          <span class="header-cta__icon" aria-hidden="true">
+            <img src={pdfIcon.src} alt="" loading="lazy" decoding="async" />
+          </span>
         </Button>
-        <Button href={siteConfig.contact.booking} target="_blank">
-          {dict.ctas.schedule}
+        <Button
+          href={siteConfig.contact.email}
+          variant="secondary"
+          className="header-cta header-cta--mail header-cta--icon"
+          ariaLabel={dict.ctas.email}
+          title={dict.ctas.email}
+        >
+          <span class="header-cta__icon" aria-hidden="true">
+            <img src={gmailIcon.src} alt="" loading="lazy" decoding="async" />
+          </span>
+        </Button>
+        <Button href={siteConfig.contact.booking} target="_blank" variant="secondary" className="header-cta header-cta--book">
+          <span class="header-cta__content">
+            <span class="header-cta__icon header-cta__icon--svg" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d={calendlyIconPath}></path>
+              </svg>
+            </span>
+            <span class="header-cta__label">{dict.ctas.schedule}</span>
+          </span>
         </Button>
       </div>
       <button
@@ -78,18 +117,45 @@ const navItems = siteConfig.nav.map((item) => ({
       <nav class="mobile-links" aria-label="Mobile primary">
         {
           navItems.map((item) => (
-            <a class:list={['mobile-link', { active: pathname.startsWith(item.href) }]} href={item.href}>
+            <a class:list={['mobile-link', { active: item.active }]} href={item.href}>
               {item.label}
             </a>
           ))
         }
       </nav>
       <div class="mobile-cta stack-4">
-        <Button href={siteConfig.contact.booking} target="_blank" fullWidth={true}>
-          {dict.ctas.schedule}
+        <Button
+          variant="secondary"
+          fullWidth={true}
+          className="header-cta header-cta--pdf"
+          disabled={true}
+          ariaLabel={dict.labels.resumePdfSoon}
+          title={dict.labels.resumePdfSoon}
+        >
+          <span class="header-cta__content">
+            <span class="header-cta__icon" aria-hidden="true">
+              <img src={pdfIcon.src} alt="" loading="lazy" decoding="async" />
+            </span>
+            <span class="header-cta__label">CV</span>
+          </span>
         </Button>
-        <Button href={siteConfig.contact.email} variant="secondary" fullWidth={true}>
-          {dict.ctas.email}
+        <Button href={siteConfig.contact.booking} target="_blank" fullWidth={true} variant="secondary" className="header-cta header-cta--book">
+          <span class="header-cta__content">
+            <span class="header-cta__icon header-cta__icon--svg" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d={calendlyIconPath}></path>
+              </svg>
+            </span>
+            <span class="header-cta__label">{dict.ctas.schedule}</span>
+          </span>
+        </Button>
+        <Button href={siteConfig.contact.email} variant="secondary" fullWidth={true} className="header-cta header-cta--mail">
+          <span class="header-cta__content">
+            <span class="header-cta__icon" aria-hidden="true">
+              <img src={gmailIcon.src} alt="" loading="lazy" decoding="async" />
+            </span>
+            <span class="header-cta__label">{dict.ctas.email}</span>
+          </span>
         </Button>
       </div>
     </div>
@@ -97,8 +163,7 @@ const navItems = siteConfig.nav.map((item) => ({
 </header>
 
 <script>
-  const header = document.currentScript?.closest('[data-header]');
-  if (header) {
+  document.querySelectorAll('[data-header]').forEach((header) => {
     const toggle = header.querySelector('[data-menu-toggle]');
     const closeBtn = header.querySelector('[data-menu-close]');
     const panel = header.querySelector('[data-mobile-nav]');
@@ -138,10 +203,14 @@ const navItems = siteConfig.nav.map((item) => ({
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeMenu();
     });
-  }
+  });
 </script>
 
 <style>
+  .header {
+    --header-control-height: 2.2rem;
+  }
+
   .header {
     position: sticky;
     top: 0;
@@ -154,9 +223,9 @@ const navItems = siteConfig.nav.map((item) => ({
   .nav-shell {
     min-height: 4.6rem;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: var(--space-4);
+    gap: clamp(0.65rem, 1vw, 1rem);
   }
 
   .brand {
@@ -186,11 +255,11 @@ const navItems = siteConfig.nav.map((item) => ({
   }
 
   .desktop-nav {
-    justify-self: center;
+    justify-self: start;
     display: flex;
     align-items: center;
-    gap: clamp(0.7rem, 1.7vw, 1.3rem);
-    padding: 0.4rem;
+    gap: clamp(0.45rem, 1vw, 0.95rem);
+    padding: 0.35rem;
     border-radius: 999px;
     border: 1px solid var(--stroke);
     background: color-mix(in srgb, var(--card) 85%, transparent);
@@ -201,7 +270,8 @@ const navItems = siteConfig.nav.map((item) => ({
     color: var(--text-1);
     font-size: 0.93rem;
     font-weight: 500;
-    padding: 0.36rem 0.72rem;
+    white-space: nowrap;
+    padding: 0.36rem clamp(0.56rem, 0.78vw, 0.78rem);
     border-radius: 999px;
     transition:
       color var(--motion-fast) var(--motion-ease),
@@ -217,12 +287,112 @@ const navItems = siteConfig.nav.map((item) => ({
   .actions {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    min-width: max-content;
+    justify-self: end;
+    gap: 0.7rem;
   }
 
   .desktop-cta {
     display: inline-flex;
-    gap: 0.45rem;
+    gap: 0.58rem;
+  }
+
+  .desktop-cta :global(.btn) {
+    white-space: nowrap;
+    flex: 0 0 auto;
+    height: var(--header-control-height);
+    padding-block: 0;
+    padding-inline: clamp(0.92rem, 1vw, 1.08rem);
+    font-size: 0.89rem;
+    font-weight: 600;
+  }
+
+  .desktop-cta :global(.btn-primary) {
+    box-shadow: 0 10px 20px rgba(16, 74, 168, 0.34);
+  }
+
+  .desktop-cta :global(.btn-primary:hover) {
+    box-shadow: 0 12px 22px rgba(14, 65, 148, 0.38);
+  }
+
+  .desktop-cta :global(.header-cta) {
+    border-color: var(--stroke);
+    background: color-mix(in srgb, var(--card) 84%, transparent);
+  }
+
+  .desktop-cta :global(.header-cta:hover) {
+    border-color: var(--stroke-strong);
+    background: color-mix(in srgb, var(--card) 96%, transparent);
+  }
+
+  .desktop-cta :global(.header-cta--pdf) {
+    --header-cta-accent: #e65b65;
+  }
+
+  .desktop-cta :global(.header-cta--mail) {
+    --header-cta-accent: #ff7f63;
+  }
+
+  .desktop-cta :global(.header-cta--book) {
+    --header-cta-accent: #006bff;
+  }
+
+  .desktop-cta :global(.header-cta--icon) {
+    width: 3.62rem;
+    min-width: 3.62rem;
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .header-cta__content {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+  }
+
+  .header-cta__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 1.08rem;
+    height: 1.08rem;
+  }
+
+  .desktop-cta :global(.header-cta--icon .header-cta__icon) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .header-cta__icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  .header-cta__icon--svg {
+    color: var(--header-cta-accent, #006bff);
+  }
+
+  .header-cta__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: currentColor;
+  }
+
+  .header-cta__label {
+    color: var(--text-0);
+    letter-spacing: 0.01em;
+  }
+
+  .desktop-cta :global(.header-cta.is-disabled),
+  .desktop-cta :global(.header-cta:disabled) {
+    opacity: 0.92;
+  }
+
+  .desktop-cta :global(.header-cta.is-disabled .header-cta__icon),
+  .desktop-cta :global(.header-cta:disabled .header-cta__icon) {
+    opacity: 0.92;
   }
 
   .menu-btn {
@@ -326,7 +496,95 @@ const navItems = siteConfig.nav.map((item) => ({
     background: color-mix(in srgb, var(--card) 90%, transparent);
   }
 
-  @media (max-width: 1080px) {
+  .mobile-cta :global(.header-cta) {
+    justify-content: center;
+    --header-cta-accent: var(--stroke);
+  }
+
+  .mobile-cta :global(.header-cta--pdf) {
+    --header-cta-accent: #e65b65;
+  }
+
+  .mobile-cta :global(.header-cta--mail) {
+    --header-cta-accent: #ff7f63;
+  }
+
+  .mobile-cta :global(.header-cta--book) {
+    --header-cta-accent: #006bff;
+  }
+
+  @media (max-width: 1450px) {
+    .brand {
+      gap: 0.58rem;
+    }
+
+    .brand-copy strong {
+      font-size: 0.9rem;
+    }
+
+    .brand-copy small {
+      display: none;
+    }
+
+    .desktop-nav {
+      gap: 0.22rem;
+      padding: 0.28rem;
+    }
+
+    .nav-link {
+      font-size: 0.89rem;
+      padding: 0.32rem 0.56rem;
+    }
+
+    .actions {
+      gap: 0.4rem;
+    }
+
+    .desktop-cta {
+      gap: 0.38rem;
+    }
+
+    .desktop-cta :global(.btn) {
+      padding-inline: 0.82rem;
+      font-size: 0.84rem;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .brand {
+      gap: 0.62rem;
+    }
+
+    .brand-copy strong {
+      font-size: 0.92rem;
+    }
+
+    .desktop-nav {
+      gap: 0.28rem;
+      padding: 0.3rem;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      padding: 0.34rem 0.6rem;
+    }
+
+    .actions {
+      gap: 0.32rem;
+    }
+
+    .desktop-cta {
+      gap: 0.3rem;
+    }
+
+    .desktop-cta :global(.btn) {
+      height: var(--header-control-height);
+      padding-inline: 0.76rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 1240px) {
     .desktop-nav,
     .desktop-cta {
       display: none;

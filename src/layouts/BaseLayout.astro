@@ -135,10 +135,12 @@ const footerLinks = [
         const toggle = document.querySelector('[data-theme-toggle]');
         const applyTheme = (theme) => {
           root.setAttribute('data-theme', theme);
+          toggle?.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
           try {
             localStorage.setItem('theme', theme);
           } catch {}
         };
+        applyTheme(root.getAttribute('data-theme') || 'dark');
         toggle?.addEventListener('click', () => {
           const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
           applyTheme(next);

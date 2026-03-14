@@ -13,7 +13,7 @@ export interface SiteMeta {
 }
 
 export interface NavLink {
-  key: 'systems' | 'flutter' | 'projects' | 'contact';
+  key: 'overview' | 'systems' | 'flutter' | 'projects' | 'contact';
   slug: string;
 }
 

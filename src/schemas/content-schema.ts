@@ -17,8 +17,8 @@ export const siteSchema = z.object({
   nav: z
     .array(
       z.object({
-        key: z.enum(['systems', 'flutter', 'projects', 'contact']),
-        slug: z.string().min(1),
+        key: z.enum(['overview', 'systems', 'flutter', 'projects', 'contact']),
+        slug: z.string(),
       }),
     )
     .min(4),
@@ -79,12 +79,14 @@ export const dictionarySchema = z.object({
   otherLocaleName: z.string().min(1),
   skipToContent: z.string().min(1),
   nav: z.object({
+    overview: z.string().min(1),
     systems: z.string().min(1),
     flutter: z.string().min(1),
     projects: z.string().min(1),
     contact: z.string().min(1),
   }),
   ctas: z.object({
+    resumePdf: z.string().min(1),
     schedule: z.string().min(1),
     email: z.string().min(1),
     viewWork: z.string().min(1),
@@ -123,6 +125,7 @@ export const dictionarySchema = z.object({
     availability: z.string().min(1),
     languageSwitch: z.string().min(1),
     themeToggle: z.string().min(1),
+    resumePdfSoon: z.string().min(1),
     mobileMenu: z.string().min(1),
     closeMenu: z.string().min(1),
   }),

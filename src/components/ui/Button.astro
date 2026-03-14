@@ -8,6 +8,9 @@ interface Props {
   variant?: Variant;
   fullWidth?: boolean;
   ariaLabel?: string;
+  title?: string;
+  disabled?: boolean;
+  className?: string;
 }
 
 const {
@@ -17,17 +20,20 @@ const {
   variant = 'primary',
   fullWidth = false,
   ariaLabel,
+  title,
+  disabled = false,
+  className = '',
 } = Astro.props;
-const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : ''].filter(Boolean).join(' ');
+const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled ? 'is-disabled' : '', className].filter(Boolean).join(' ');
 ---
 
 {
-  href ? (
-    <a class={classes} href={href} target={target} rel={rel} aria-label={ariaLabel}>
+  href && !disabled ? (
+    <a class={classes} href={href} target={target} rel={rel} aria-label={ariaLabel} title={title}>
       <slot />
     </a>
   ) : (
-    <button class={classes} type="button" aria-label={ariaLabel}>
+    <button class={classes} type="button" aria-label={ariaLabel} title={title} disabled={disabled}>
       <slot />
     </button>
   )
@@ -76,6 +82,18 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : ''].filter(Bo
     transform: translateY(0) scale(0.98);
   }
 
+  .btn.is-disabled,
+  .btn:disabled {
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn.is-disabled::before,
+  .btn:disabled::before {
+    display: none;
+  }
+
   .btn-full {
     width: 100%;
   }
@@ -101,6 +119,14 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : ''].filter(Bo
     border-color: var(--stroke-strong);
   }
 
+  .btn-secondary.is-disabled,
+  .btn-secondary:disabled {
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    border-color: color-mix(in srgb, var(--stroke) 92%, transparent);
+    color: var(--muted);
+    opacity: 0.82;
+  }
+
   .btn-ghost {
     background: transparent;
     color: var(--text-1);
@@ -110,6 +136,13 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : ''].filter(Bo
   .btn-ghost:hover {
     color: var(--text-0);
     border-color: var(--stroke-strong);
+  }
+
+  .btn-ghost.is-disabled,
+  .btn-ghost:disabled {
+    color: var(--muted);
+    border-color: color-mix(in srgb, var(--stroke) 88%, transparent);
+    opacity: 0.78;
   }
 
   .btn-link {

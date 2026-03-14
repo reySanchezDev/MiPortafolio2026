@@ -8,14 +8,16 @@ export const es: Dictionary = {
   otherLocaleName: 'English',
   skipToContent: 'Saltar al contenido',
   nav: {
+    overview: 'Resumen',
     systems: 'Sistemas',
     flutter: 'Flutter',
     projects: 'Proyectos',
     contact: 'Contacto',
   },
   ctas: {
+    resumePdf: 'CV PDF',
     schedule: 'Agendar llamada',
-    email: 'Escribeme',
+    email: 'Escríbeme',
     viewWork: 'Ver proyectos destacados',
     systemsArchitecture: 'Ver enfoque de arquitectura',
     seeAllProjects: 'Ver todos los proyectos',
@@ -52,35 +54,36 @@ export const es: Dictionary = {
     availability: 'Disponibilidad',
     languageSwitch: 'Cambiar idioma',
     themeToggle: 'Cambiar tema',
+    resumePdfSoon: 'PDF disponible pronto',
     mobileMenu: 'Abrir menu',
     closeMenu: 'Cerrar menu',
   },
   meta: {
     home: {
-      title: 'Reynaldo Sanchez | Fullstack Developer (Flutter-first)',
+      title: 'Reynaldo Sánchez | Fullstack Developer (Flutter-first)',
       description:
         'Desarrollador fullstack enfocado en productos Flutter-first, APIs confiables e integraciones listas para negocio.',
     },
     systems: {
-      title: 'Sistemas y Arquitectura | Reynaldo Sanchez',
+      title: 'Sistemas y Arquitectura | Reynaldo Sánchez',
       description:
         'Como diseno sistemas confiables: arquitectura modular, integraciones resilientes y visibilidad operativa.',
     },
     flutter: {
-      title: 'Especialidad Flutter | Reynaldo Sanchez',
+      title: 'Especialidad Flutter | Reynaldo Sánchez',
       description:
         'Especialista Flutter con experiencia real en produccion: arquitectura, rendimiento e integraciones.',
     },
     projects: {
-      title: 'Proyectos Seleccionados | Reynaldo Sanchez',
+      title: 'Proyectos Seleccionados | Reynaldo Sánchez',
       description: 'Casos cortos enfocados en decisiones de arquitectura, ejecucion e impacto operativo.',
     },
     contact: {
-      title: 'Trabajemos Juntos | Reynaldo Sanchez',
+      title: 'Trabajemos Juntos | Reynaldo Sánchez',
       description: 'Colaboracion remota e internacional para entrega fullstack con enfoque Flutter-first.',
     },
     notFound: {
-      title: 'Pagina no encontrada | Reynaldo Sanchez',
+      title: 'Pagina no encontrada | Reynaldo Sánchez',
       description: 'La pagina que buscas no esta disponible.',
     },
   },
