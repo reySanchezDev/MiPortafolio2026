@@ -135,110 +135,140 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'offline-route-sync-engine',
+    id: 'ls-central-statement-insufficiency-control',
     featured: true,
-    categories: ['flutter', 'automation', 'integrations'],
+    categories: ['backend'],
     title: {
-      en: 'Offline Field Sync Engine',
-      es: 'Motor de Sincronizacion Offline para Campo',
+      en: 'LS Central Statement Insufficiency Control',
+      es: 'Control de Insuficiencias para Open Statement en LS Central',
     },
     oneLiner: {
-      en: 'Offline-first transaction flow for field operations with resilient sync and conflict handling.',
-      es: 'Flujo transaccional offline-first para operacion en campo con sincronizacion resiliente.',
+      en: 'AL extension for Business Central + LS Central that surfaces statement shortages and blocks dirty posting with configurable rules.',
+      es: 'Extension en AL para Business Central + LS Central que muestra insuficiencias por statement y bloquea el posteo con reglas configurables.',
     },
     problem: {
-      en: 'Field teams needed reliable transactions even with unstable or absent connectivity.',
-      es: 'Equipos de campo necesitaban transacciones confiables incluso sin conectividad estable.',
+      en: 'LS only stopped Post Statement with a generic negative-inventory alert, leaving operations without the exact items and quantities needed to correct the statement before posting.',
+      es: 'LS solo detenia el Post Statement con una alerta generica de inventario negativo, dejando a operacion sin el detalle de items y cantidades necesario para corregir el statement antes de postear.',
     },
     roles: [
-      { en: 'Offline architecture', es: 'Arquitectura offline' },
-      { en: 'Sync orchestration', es: 'Orquestacion de sincronizacion' },
-      { en: 'Operational diagnostics', es: 'Diagnostico operativo' },
+      { en: 'Functional analysis', es: 'Analisis funcional' },
+      { en: 'AL architecture', es: 'Arquitectura AL' },
+      { en: 'Page extensions + post guard', es: 'Page extensions + guard de posteo' },
     ],
-    stack: ['Flutter', 'SQLite', '.NET API', 'SQL Server', 'PowerShell'],
+    stack: ['AL', 'Dynamics 365 Business Central', 'LS Central', 'Page Extensions', 'Codeunits'],
     architecture: [
       {
-        en: 'Local queue with retry/backoff and deterministic replay sequence.',
-        es: 'Cola local con retry/backoff y secuencia determinista de reprocesamiento.',
+        en: 'Two page extensions: one on Open Statement for the operational entry point, another on setup to control insufficiency behavior and feature flags.',
+        es: 'Dos page extensions: una sobre Open Statement para el punto de entrada operativo y otra sobre setup para controlar el comportamiento de insuficiencias y los feature flags.',
       },
       {
-        en: 'Batch sync endpoint with idempotency keys and duplicate protection.',
-        es: 'Endpoint de sincronizacion por lotes con idempotencia y proteccion de duplicados.',
+        en: 'Dedicated calculation and guard codeunits separate UI, business rules, and posting protection inside the LS flow.',
+        es: 'Codeunits dedicadas de calculo y guard separan UI, reglas de negocio y proteccion del posteo dentro del flujo de LS.',
       },
       {
-        en: 'Conflict policy tied to business rules and support visibility.',
-        es: 'Politica de conflicto ligada a reglas de negocio y visibilidad de soporte.',
+        en: 'Statement-aware list, drilldown trace, and export actions turn a blocking event into actionable inventory work.',
+        es: 'Lista contextual por statement, drilldown de trace y acciones de exportacion convierten un bloqueo en trabajo operativo accionable.',
       },
     ],
     impact: [
       {
-        en: 'Reduced data-loss risk in low-connectivity routes.',
-        es: 'Reduccion del riesgo de perdida de datos en rutas con baja conectividad.',
+        en: 'Operations moved from a generic stop message to an exact insufficiency list for the selected statement and date.',
+        es: 'Operacion paso de un mensaje generico de bloqueo a una lista exacta de insuficiencias para el statement y fecha seleccionados.',
       },
       {
-        en: 'Enabled dependable field execution across distributed locations.',
-        es: 'Habilito ejecucion confiable en campo en ubicaciones distribuidas.',
+        en: 'Teams can adjust inventory or execute corrective movements before posting, keeping statements and inventory cleaner.',
+        es: 'Los equipos pueden ajustar inventario o ejecutar movimientos correctivos antes de postear, manteniendo mas limpios los statements y el inventario.',
       },
       {
-        en: 'Support teams gained clear diagnostics for pending and failed batches.',
-        es: 'Soporte obtuvo diagnostico claro para lotes pendientes o fallidos.',
+        en: 'Posting control became configurable and safer through setup flags and pre-post validation.',
+        es: 'El control de posteo se volvio configurable y mas seguro mediante setup y validacion antes del posteo.',
       },
     ],
     caseStudy: {
       context: {
-        en: 'Built for route-based operations where network assumptions are unrealistic.',
-        es: 'Construido para operaciones por ruta donde asumir red estable no es realista.',
+        en: 'Built for a Nicaraguan company running Dynamics 365 Business Central with LS Central BackOffice and POS, where nightly statement closure needed more than a blocking alert.',
+        es: 'Disenado para una empresa en Nicaragua que operaba Dynamics 365 Business Central con LS Central BackOffice y POS, donde el cierre nocturno de statements necesitaba mucho mas que una alerta de bloqueo.',
       },
       constraints: [
         {
-          en: 'Eventual consistency accepted, but duplicate side effects were not.',
-          es: 'Se acepto consistencia eventual, pero no efectos duplicados.',
+          en: 'The feature had to live inside Open Statement so the nightly operation would not depend on external screens or manual workarounds.',
+          es: 'La funcionalidad debia vivir dentro de Open Statement para que la operacion nocturna no dependiera de pantallas externas ni de workarounds manuales.',
         },
         {
-          en: 'Support needed transparent sync diagnostics.',
-          es: 'Soporte necesitaba diagnostico transparente de sincronizacion.',
+          en: 'The solution had to explain the exact insufficiencies for that specific statement and date, not just signal that something was wrong.',
+          es: 'La solucion tenia que explicar las insuficiencias exactas para ese statement y fecha concretos, no solo indicar que algo estaba mal.',
+        },
+        {
+          en: 'Business rules had to remain configurable through setup, including posting block behavior and deeper calculation logic.',
+          es: 'Las reglas de negocio debian seguir siendo configurables desde setup, incluyendo el bloqueo del posteo y la logica de calculo mas profunda.',
         },
       ],
       solution: [
         {
-          en: 'Implemented durable queue + local snapshots + conflict tags.',
-          es: 'Se implemento cola durable + snapshots locales + etiquetas de conflicto.',
+          en: 'Added an Insufficiencies action through a page extension on Open Statement to open a statement-scoped list of insufficient items.',
+          es: 'Se agrego una accion Insufficiencies mediante una page extension sobre Open Statement para abrir una lista acotada al statement con todos los items insuficientes.',
         },
         {
-          en: 'Added reconciliation dashboard for pending and failed payloads.',
-          es: 'Se agrego dashboard de reconciliacion para payloads pendientes y fallidos.',
+          en: 'Built a second page extension on the existing setup so the company could enable or disable posting block and complementary insufficiency logic.',
+          es: 'Se construyo una segunda page extension sobre el setup existente para que la empresa pudiera activar o desactivar el bloqueo de posteo y la logica complementaria de insuficiencias.',
+        },
+        {
+          en: 'Implemented dedicated AL codeunits for calculation and post guard, including the validation that stops Post Statement when insufficiencies still exist.',
+          es: 'Se implementaron codeunits dedicadas en AL para calculo y guard de posteo, incluyendo la validacion que detiene Post Statement cuando las insuficiencias siguen existiendo.',
+        },
+        {
+          en: 'Added operational trace and export capabilities so users could move from alert to correction with concrete evidence per item.',
+          es: 'Se anadieron capacidades de trace y exportacion operativa para que el usuario pasara de la alerta a la correccion con evidencia concreta por item.',
         },
       ],
       decisions: [
         {
-          en: 'Prioritized integrity over optimistic UI in risky transactional steps.',
-          es: 'Se priorizo integridad sobre UI optimista en pasos transaccionales de riesgo.',
+          en: 'The feature was embedded in the LS BackOffice page instead of a detached process, maximizing adoption in the real nightly workflow.',
+          es: 'La funcionalidad se incrusto en la pagina de LS BackOffice en vez de crear un proceso aislado, maximizando adopcion dentro del flujo nocturno real.',
         },
         {
-          en: 'Connected sync alerts to SLA thresholds for escalations.',
-          es: 'Se conectaron alertas de sincronizacion a umbrales SLA para escalamiento.',
+          en: 'Setup, UI entry point, calculation engine, and posting guard were separated to keep business rules maintainable and auditable.',
+          es: 'Setup, punto de entrada UI, motor de calculo y guard de posteo se separaron para mantener las reglas de negocio mantenibles y auditables.',
+        },
+        {
+          en: 'Actionable evidence per statement was prioritized over the generic native message because operations needed to fix inventory before closing.',
+          es: 'Se priorizo evidencia accionable por statement sobre el mensaje generico nativo, porque operacion necesitaba corregir inventario antes del cierre.',
         },
       ],
       outcomes: [
         {
-          en: 'Transaction replay became predictable and auditable.',
-          es: 'El reprocesamiento transaccional se volvio predecible y auditable.',
+          en: 'Users can now see every insufficient product tied to the current statement before attempting posting.',
+          es: 'Ahora los usuarios pueden ver cada producto insuficiente asociado al statement actual antes de intentar el posteo.',
         },
         {
-          en: 'Teams maintained productivity during long offline windows.',
-          es: 'Los equipos mantuvieron productividad durante ventanas largas sin red.',
+          en: 'Inventory adjustments and corrective movements happen with real statement-level evidence instead of guesswork.',
+          es: 'Los ajustes de inventario y movimientos correctivos se realizan con evidencia real a nivel de statement en lugar de suposiciones.',
+        },
+        {
+          en: 'Nightly closing became cleaner because posting is stopped only after presenting actionable insufficiency detail.',
+          es: 'El cierre nocturno se volvio mas limpio porque el posteo se detiene solo despues de presentar detalle accionable de insuficiencias.',
         },
       ],
       lessons: [
         {
-          en: 'Offline-first only works when support tooling is included from day one.',
-          es: 'Offline-first solo funciona cuando el tooling de soporte existe desde el dia uno.',
+          en: 'In retail backoffice flows, blocking alone is not enough; the system must explain the problem exactly where the user can resolve it.',
+          es: 'En flujos de backoffice retail, bloquear no basta; el sistema debe explicar el problema exactamente donde el usuario puede resolverlo.',
         },
       ],
     },
+    video: {
+      title: {
+        en: 'Temporary reference video',
+        es: 'Video de referencia temporal',
+      },
+      caption: {
+        en: 'Temporary placeholder while the dedicated walkthrough for the LS Central insufficiency module is prepared.',
+        es: 'Placeholder temporal mientras sustituimos este bloque por el walkthrough especifico del modulo de insuficiencias en LS Central.',
+      },
+      embedUrl: 'https://www.youtube-nocookie.com/embed/FL7aUb48rls?start=10&rel=0&modestbranding=1',
+    },
     links: {
-      caseStudyAnchor: 'offline-route-sync-engine',
-      demo: 'https://github.com/',
+      caseStudyAnchor: 'ls-central-statement-insufficiency-control',
     },
   },
   {
