@@ -34,12 +34,15 @@ const targetPath = switchLocalePath(pathname, targetLocale);
     transition:
       transform var(--motion-fast) var(--motion-ease),
       border-color var(--motion-fast) var(--motion-ease),
-      background-color var(--motion-fast) var(--motion-ease);
+      background var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease);
   }
 
-  .lang-switch:hover {
+  .lang-switch:hover,
+  .lang-switch:focus-visible {
     transform: translateY(-1px);
     border-color: var(--stroke-strong);
-    background: color-mix(in srgb, var(--card) 96%, transparent);
+    background: color-mix(in srgb, var(--card) 96%, color-mix(in srgb, var(--accent) 8%, transparent));
+    color: var(--text-0);
   }
 </style>

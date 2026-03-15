@@ -44,7 +44,7 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--inline-gap);
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-pill);
@@ -56,7 +56,7 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
       transform var(--motion-fast) var(--motion-ease),
       box-shadow var(--motion-fast) var(--motion-ease),
       border-color var(--motion-fast) var(--motion-ease),
-      background-color var(--motion-fast) var(--motion-ease),
+      background var(--motion-fast) var(--motion-ease),
       color var(--motion-fast) var(--motion-ease);
   }
 
@@ -109,13 +109,14 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
   }
 
   .btn-secondary {
-    background: color-mix(in srgb, var(--card) 76%, transparent);
-    border-color: var(--stroke);
+    background: color-mix(in srgb, var(--card) 88%, transparent);
+    border-color: color-mix(in srgb, var(--stroke) 92%, transparent);
     color: var(--text-0);
   }
 
-  .btn-secondary:hover {
-    background: color-mix(in srgb, var(--card) 92%, transparent);
+  .btn-secondary:hover,
+  .btn-secondary:focus-visible {
+    background: color-mix(in srgb, var(--card) 96%, color-mix(in srgb, var(--accent) 8%, transparent));
     border-color: var(--stroke-strong);
   }
 
@@ -128,12 +129,14 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
   }
 
   .btn-ghost {
-    background: transparent;
-    color: var(--text-1);
-    border-color: var(--stroke);
+    background: color-mix(in srgb, var(--card) 44%, transparent);
+    color: var(--card-text-0);
+    border-color: color-mix(in srgb, var(--stroke) 92%, transparent);
   }
 
-  .btn-ghost:hover {
+  .btn-ghost:hover,
+  .btn-ghost:focus-visible {
+    background: color-mix(in srgb, var(--card) 78%, color-mix(in srgb, var(--accent) 10%, transparent));
     color: var(--text-0);
     border-color: var(--stroke-strong);
   }
@@ -148,9 +151,9 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
   .btn-link {
     border: 0;
     padding: 0;
-    color: var(--text-1);
+    color: var(--card-text-0);
     border-radius: 0;
-    text-decoration: underline transparent;
+    text-decoration: underline color-mix(in srgb, var(--accent) 24%, transparent);
     text-underline-offset: 4px;
     overflow: visible;
   }
@@ -159,7 +162,8 @@ const classes = ['btn', `btn-${variant}`, fullWidth ? 'btn-full' : '', disabled 
     display: none;
   }
 
-  .btn-link:hover {
+  .btn-link:hover,
+  .btn-link:focus-visible {
     transform: none;
     color: var(--text-0);
     text-decoration-color: var(--accent-2);

@@ -19,7 +19,7 @@ const links = [
     external: false,
     brand: '#ea4335',
     title: 'Email',
-    kicker: isEs ? 'Conversacion directa' : 'Direct conversation',
+    kicker: isEs ? 'Conversación directa' : 'Direct conversation',
     description: isEs
       ? 'Ideal para conversar alcance, disponibilidad y siguientes pasos sin ruido.'
       : 'Best for project scope, availability, and next steps without extra noise.',
@@ -32,9 +32,9 @@ const links = [
     external: true,
     brand: '#25d366',
     title: 'WhatsApp',
-    kicker: isEs ? 'Respuesta rapida' : 'Fast response',
+    kicker: isEs ? 'Respuesta rápida' : 'Fast response',
     description: isEs
-      ? 'Para un primer contacto agil, mensajes breves y coordinacion rapida desde movil o web.'
+      ? 'Para un primer contacto ágil, mensajes breves y coordinación rápida desde móvil o web.'
       : 'For quick first contact, short messages, and fast coordination from mobile or web.',
     action: isEs ? 'Abrir WhatsApp' : 'Open WhatsApp',
     icon: { type: 'fill', path: siWhatsapp.path, viewBox: '0 0 24 24' },
@@ -58,9 +58,9 @@ const links = [
     external: true,
     brand: '#8b949e',
     title: 'GitHub',
-    kicker: isEs ? 'Prueba tecnica' : 'Technical proof',
+    kicker: isEs ? 'Prueba técnica' : 'Technical proof',
     description: isEs
-      ? 'Codigo, estructura y evidencia de ejecucion para revisar con mas criterio.'
+      ? 'Código, estructura y evidencia de ejecución para revisar con más criterio.'
       : 'Code, structure, and execution proof to review with more signal.',
     action: isEs ? 'Explorar repos' : 'Explore repos',
     icon: { type: 'fill', path: siGithub.path, viewBox: '0 0 24 24' },
@@ -74,7 +74,7 @@ const links = [
       <h2 class="section-title">{dict.contact.linksTitle}</h2>
       <p class="section-bridge">
         {isEs
-          ? 'Un bloque limpio para contacto real: correo y WhatsApp para avanzar, LinkedIn para contexto y GitHub para evidencia tecnica.'
+          ? 'Un bloque limpio para contacto real: correo y WhatsApp para avanzar, LinkedIn para contexto y GitHub para evidencia técnica.'
           : 'One clean contact block: email and WhatsApp to move things forward, LinkedIn for context, and GitHub for technical proof.'}
       </p>
     </div>
@@ -213,7 +213,7 @@ const links = [
   .contact-kicker {
     font-family: var(--font-mono);
     font-size: 0.74rem;
-    color: color-mix(in srgb, var(--brand) 62%, var(--text-1));
+    color: color-mix(in srgb, var(--brand) 18%, var(--card-text-0) 82%);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -232,11 +232,11 @@ const links = [
     width: fit-content;
     display: inline-flex;
     align-items: center;
-    gap: 0.48rem;
+    gap: var(--inline-gap);
     padding: 0.45rem 0.8rem;
     border-radius: var(--radius-pill);
-    border: 1px solid color-mix(in srgb, var(--brand) 24%, var(--stroke));
-    background: color-mix(in srgb, var(--brand) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--stroke));
+    background: color-mix(in srgb, var(--brand) 14%, transparent);
     color: var(--card-text-0);
     font-weight: 600;
     transition:
@@ -245,14 +245,15 @@ const links = [
       background-color var(--motion-fast) var(--motion-ease);
   }
 
-  .contact-card:hover .contact-action {
+  .contact-card:hover .contact-action,
+  .contact-card:focus-visible .contact-action {
     transform: translateX(3px);
-    border-color: color-mix(in srgb, var(--brand) 40%, var(--stroke-strong));
-    background: color-mix(in srgb, var(--brand) 16%, transparent);
+    border-color: color-mix(in srgb, var(--brand) 48%, var(--stroke-strong));
+    background: color-mix(in srgb, var(--brand) 20%, transparent);
   }
 
   .availability-shell {
-    padding: clamp(1.05rem, 2.8vw, 1.4rem);
+    padding: var(--surface-padding);
     display: flex;
     align-items: center;
     justify-content: space-between;

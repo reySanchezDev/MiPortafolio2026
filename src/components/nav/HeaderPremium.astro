@@ -45,63 +45,65 @@ const calendlyIconPath =
       </span>
     </a>
 
-    <nav class="desktop-nav" aria-label="Primary">
-      {
-        navItems.map((item) => (
-          <a class:list={['nav-link', { active: item.active }]} href={item.href}>
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
+    <div class="desktop-cluster">
+      <nav class="desktop-nav" aria-label="Primary">
+        {
+          navItems.map((item) => (
+            <a class:list={['nav-link', { active: item.active }]} href={item.href}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
 
-    <div class="actions">
-      <LanguageSwitch locale={locale} pathname={pathname} label={dict.labels.languageSwitch} />
-      <ThemeToggle label={dict.labels.themeToggle} />
-      <div class="desktop-cta">
-        <Button
-          variant="secondary"
-          className="header-cta header-cta--pdf header-cta--icon"
-          disabled={true}
-          ariaLabel={dict.labels.resumePdfSoon}
-          title={dict.labels.resumePdfSoon}
-        >
-          <span class="header-cta__icon" aria-hidden="true">
-            <img src={pdfIcon.src} alt="" loading="lazy" decoding="async" />
-          </span>
-        </Button>
-        <Button
-          href={siteConfig.contact.email}
-          variant="secondary"
-          className="header-cta header-cta--mail header-cta--icon"
-          ariaLabel={dict.ctas.email}
-          title={dict.ctas.email}
-        >
-          <span class="header-cta__icon" aria-hidden="true">
-            <img src={gmailIcon.src} alt="" loading="lazy" decoding="async" />
-          </span>
-        </Button>
-        <Button href={siteConfig.contact.booking} target="_blank" variant="secondary" className="header-cta header-cta--book">
-          <span class="header-cta__content">
-            <span class="header-cta__icon header-cta__icon--svg" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d={calendlyIconPath}></path>
-              </svg>
+      <div class="actions">
+        <LanguageSwitch locale={locale} pathname={pathname} label={dict.labels.languageSwitch} />
+        <ThemeToggle label={dict.labels.themeToggle} />
+        <div class="desktop-cta">
+          <Button
+            variant="secondary"
+            className="header-cta header-cta--pdf header-cta--icon"
+            disabled={true}
+            ariaLabel={dict.labels.resumePdfSoon}
+            title={dict.labels.resumePdfSoon}
+          >
+            <span class="header-cta__icon" aria-hidden="true">
+              <img src={pdfIcon.src} alt="" loading="lazy" decoding="async" />
             </span>
-            <span class="header-cta__label">{dict.ctas.schedule}</span>
-          </span>
-        </Button>
+          </Button>
+          <Button
+            href={siteConfig.contact.email}
+            variant="secondary"
+            className="header-cta header-cta--mail header-cta--icon"
+            ariaLabel={dict.ctas.email}
+            title={dict.ctas.email}
+          >
+            <span class="header-cta__icon" aria-hidden="true">
+              <img src={gmailIcon.src} alt="" loading="lazy" decoding="async" />
+            </span>
+          </Button>
+          <Button href={siteConfig.contact.booking} target="_blank" variant="secondary" className="header-cta header-cta--book">
+            <span class="header-cta__content">
+              <span class="header-cta__icon header-cta__icon--svg" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d={calendlyIconPath}></path>
+                </svg>
+              </span>
+              <span class="header-cta__label">{dict.ctas.schedule}</span>
+            </span>
+          </Button>
+        </div>
+        <button
+          class="menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          data-menu-toggle
+          aria-label={dict.labels.mobileMenu}
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button
-        class="menu-btn"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        data-menu-toggle
-        aria-label={dict.labels.mobileMenu}
-      >
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </div>
 
@@ -110,7 +112,7 @@ const calendlyIconPath =
       <div class="mobile-head">
         <div>
           <strong>{siteConfig.brandName}</strong>
-          <small>Menu</small>
+          <small>Menú</small>
         </div>
         <button type="button" data-menu-close aria-label={dict.labels.closeMenu}>x</button>
       </div>
@@ -222,16 +224,16 @@ const calendlyIconPath =
 
   .nav-shell {
     min-height: 4.6rem;
-    display: grid;
-    grid-template-columns: auto auto minmax(0, 1fr) auto;
+    display: flex;
     align-items: center;
-    gap: clamp(0.65rem, 1vw, 1rem);
+    justify-content: space-between;
+    gap: clamp(0.75rem, 1.2vw, 1.1rem);
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--cluster-gap);
     min-width: max-content;
   }
 
@@ -254,20 +256,28 @@ const calendlyIconPath =
     color: var(--muted);
   }
 
+  .desktop-cluster {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(0.75rem, 1.35vw, 1.15rem);
+    min-width: 0;
+    margin-left: auto;
+  }
+
   .desktop-nav {
-    justify-self: start;
     display: flex;
     align-items: center;
     gap: clamp(0.45rem, 1vw, 0.95rem);
     padding: 0.35rem;
     border-radius: 999px;
     border: 1px solid var(--stroke);
-    background: color-mix(in srgb, var(--card) 85%, transparent);
+    background: color-mix(in srgb, var(--card) 92%, transparent);
   }
 
   .nav-link {
     position: relative;
-    color: var(--text-1);
+    color: var(--card-text-1);
     font-size: 0.93rem;
     font-weight: 500;
     white-space: nowrap;
@@ -275,26 +285,28 @@ const calendlyIconPath =
     border-radius: 999px;
     transition:
       color var(--motion-fast) var(--motion-ease),
-      background-color var(--motion-fast) var(--motion-ease);
+      background var(--motion-fast) var(--motion-ease),
+      box-shadow var(--motion-fast) var(--motion-ease);
   }
 
   .nav-link.active,
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link:focus-visible {
     color: var(--text-0);
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    background: color-mix(in srgb, var(--accent) 20%, color-mix(in srgb, var(--card) 88%, transparent));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent);
   }
 
   .actions {
     display: inline-flex;
     align-items: center;
     min-width: max-content;
-    justify-self: end;
-    gap: 0.7rem;
+    gap: var(--cluster-gap);
   }
 
   .desktop-cta {
     display: inline-flex;
-    gap: 0.58rem;
+    gap: var(--inline-gap-md);
   }
 
   .desktop-cta :global(.btn) {
@@ -316,13 +328,18 @@ const calendlyIconPath =
   }
 
   .desktop-cta :global(.header-cta) {
-    border-color: var(--stroke);
-    background: color-mix(in srgb, var(--card) 84%, transparent);
+    border-color: color-mix(in srgb, var(--stroke) 92%, transparent);
+    background: color-mix(in srgb, var(--card) 90%, transparent);
   }
 
-  .desktop-cta :global(.header-cta:hover) {
+  .desktop-cta :global(.header-cta:hover),
+  .desktop-cta :global(.header-cta:focus-visible) {
     border-color: var(--stroke-strong);
-    background: color-mix(in srgb, var(--card) 96%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--card) 96%,
+      color-mix(in srgb, var(--header-cta-accent, var(--accent)) 10%, transparent)
+    );
   }
 
   .desktop-cta :global(.header-cta--pdf) {
@@ -347,7 +364,7 @@ const calendlyIconPath =
   .header-cta__content {
     display: inline-flex;
     align-items: center;
-    gap: 0.48rem;
+    gap: var(--inline-gap);
   }
 
   .header-cta__icon {
@@ -404,6 +421,17 @@ const calendlyIconPath =
     background: color-mix(in srgb, var(--card) 85%, transparent);
     padding: 0;
     place-items: center;
+    transition:
+      border-color var(--motion-fast) var(--motion-ease),
+      background var(--motion-fast) var(--motion-ease),
+      transform var(--motion-fast) var(--motion-ease);
+  }
+
+  .menu-btn:hover,
+  .menu-btn:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--stroke-strong);
+    background: color-mix(in srgb, var(--card) 96%, color-mix(in srgb, var(--accent) 8%, transparent));
   }
 
   .menu-btn span {
@@ -419,7 +447,7 @@ const calendlyIconPath =
     inset: 0;
     background: color-mix(in srgb, var(--bg-0) 78%, transparent);
     backdrop-filter: blur(12px);
-    padding: 1.15rem;
+    padding: var(--surface-padding-sm);
     opacity: 0;
     transition: opacity var(--motion-base) var(--motion-ease);
   }
@@ -490,10 +518,11 @@ const calendlyIconPath =
   }
 
   .mobile-link.active,
-  .mobile-link:hover {
+  .mobile-link:hover,
+  .mobile-link:focus-visible {
     color: var(--text-0);
-    border-color: var(--stroke);
-    background: color-mix(in srgb, var(--card) 90%, transparent);
+    border-color: var(--stroke-strong);
+    background: color-mix(in srgb, var(--card) 94%, color-mix(in srgb, var(--accent) 8%, transparent));
   }
 
   .mobile-cta :global(.header-cta) {
@@ -540,6 +569,10 @@ const calendlyIconPath =
       gap: 0.4rem;
     }
 
+    .desktop-cluster {
+      gap: 0.7rem;
+    }
+
     .desktop-cta {
       gap: 0.38rem;
     }
@@ -573,6 +606,10 @@ const calendlyIconPath =
       gap: 0.32rem;
     }
 
+    .desktop-cluster {
+      gap: 0.55rem;
+    }
+
     .desktop-cta {
       gap: 0.3rem;
     }
@@ -591,8 +628,11 @@ const calendlyIconPath =
     }
 
     .nav-shell {
-      grid-template-columns: 1fr auto;
       min-height: 4.2rem;
+    }
+
+    .desktop-cluster {
+      gap: 0.4rem;
     }
 
     .menu-btn {

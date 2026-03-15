@@ -33,7 +33,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: 'automation_ai',
-    label: { en: 'Automation / AI', es: 'Automatizacion / AI' },
+    label: { en: 'Automation / AI', es: 'Automatización / AI' },
     items: ['PowerShell automation', 'n8n bots', 'Teams/WhatsApp/Outlook integrations', 'OpenAI-assisted workflows'],
   },
 ];

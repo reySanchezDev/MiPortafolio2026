@@ -18,6 +18,23 @@ coverage/
 playwright-report/
 test-results/
 .tmp-dev.log
+.logs/
+backups/
+RecursosProyectoInsuficiencia/
+public/icons/ui/
+AGENTS.md
+.codex/
+.codex-dev.err
+.codex-dev.out
+.npm-test.txt
+.start-test.txt
+dev-server.err
+dev-server.log
+gen-sun.js
+new_sun.txt
+sun-path.txt
+sun.txt
+*.tmp-shots*.png
 
 
 # environment variables

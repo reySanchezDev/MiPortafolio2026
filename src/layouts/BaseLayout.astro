@@ -15,12 +15,23 @@ interface Props {
   pathname: string;
   ogImage?: string;
   hideFooter?: boolean;
+  noindex?: boolean;
 }
 
-const { locale, dict, title, description, pathname, ogImage = '/images/og-default.svg', hideFooter = false } = Astro.props;
+const {
+  locale,
+  dict,
+  title,
+  description,
+  pathname,
+  ogImage = '/images/og-default.svg',
+  hideFooter = false,
+  noindex = false,
+} = Astro.props;
 const alternates = getAlternateLinks(pathname);
 const canonical = new URL(pathname, siteConfig.siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteConfig.siteUrl).toString();
+const faviconVersion = '20260315-rs';
 const footerLinks = [
   {
     label: 'Email',
@@ -53,7 +64,12 @@ const footerLinks = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f1b2a" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    <link rel="shortcut icon" href={`/favicon-rs.ico?v=${faviconVersion}`} />
+    <link rel="icon" href={`/favicon-rs.ico?v=${faviconVersion}`} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={`/favicon-rs-32x32.png?v=${faviconVersion}`} />
+    <link rel="icon" type="image/svg+xml" href={`/favicon-rs.svg?v=${faviconVersion}`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`/favicon-rs-180x180.png?v=${faviconVersion}`} />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="en" href={new URL(alternates.en, siteConfig.siteUrl).toString()} />
     <link rel="alternate" hreflang="es" href={new URL(alternates.es, siteConfig.siteUrl).toString()} />
@@ -184,7 +200,7 @@ const footerLinks = [
   }
 
   .footer-shell {
-    padding: clamp(1.05rem, 3vw, 1.45rem) clamp(1rem, 3vw, 1.6rem);
+    padding: var(--surface-padding);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -212,7 +228,7 @@ const footerLinks = [
   .footer-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.62rem;
+    gap: var(--inline-gap-md);
     padding: 0.56rem 0.9rem;
     border-radius: var(--radius-pill);
     border: 1px solid color-mix(in srgb, var(--footer-brand) 26%, var(--stroke));
@@ -222,14 +238,17 @@ const footerLinks = [
     transition:
       transform var(--motion-fast) var(--motion-ease),
       border-color var(--motion-fast) var(--motion-ease),
-      background-color var(--motion-fast) var(--motion-ease),
+      background var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease),
       box-shadow var(--motion-fast) var(--motion-ease);
   }
 
-  .footer-link:hover {
+  .footer-link:hover,
+  .footer-link:focus-visible {
     transform: translateY(-2px);
     border-color: color-mix(in srgb, var(--footer-brand) 44%, var(--stroke-strong));
-    background: color-mix(in srgb, var(--footer-brand) 10%, var(--card));
+    background: color-mix(in srgb, var(--footer-brand) 14%, var(--card));
+    color: var(--text-0);
     box-shadow: 0 10px 24px color-mix(in srgb, var(--footer-brand) 18%, transparent);
   }
 

@@ -15,7 +15,7 @@ const { title, items } = Astro.props;
 ---
 
 <section class="section">
-  <div class="container">
+  <div class="container stack-5">
     <h2 class="section-title reveal" data-reveal>{title}</h2>
     <div class="grid-3">
       {
@@ -39,12 +39,12 @@ const { title, items } = Astro.props;
   .pill-index {
     width: fit-content;
     border-radius: var(--radius-pill);
-    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-    color: var(--accent-2);
+    border: 1px solid color-mix(in srgb, var(--accent) 46%, transparent);
+    color: color-mix(in srgb, var(--accent-2) 22%, var(--text-0) 78%);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     padding: 0.2rem 0.56rem;
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
   }
 
   ul {

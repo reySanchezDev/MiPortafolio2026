@@ -4,7 +4,7 @@ type Dictionary = typeof en;
 
 export const es: Dictionary = {
   localeCode: 'es',
-  localeName: 'Espanol',
+  localeName: 'Español',
   otherLocaleName: 'English',
   skipToContent: 'Saltar al contenido',
   nav: {
@@ -30,7 +30,7 @@ export const es: Dictionary = {
     all: 'Todos',
     flutter: 'Flutter',
     backend: 'Backend',
-    automation: 'Automatizacion',
+    automation: 'Automatización',
     integrations: 'Integraciones',
   },
   links: {
@@ -49,15 +49,15 @@ export const es: Dictionary = {
     keyDecisions: 'Decisiones clave',
     context: 'Contexto',
     constraints: 'Restricciones',
-    solutionOverview: 'Enfoque de solucion',
+    solutionOverview: 'Enfoque de solución',
     outcomes: 'Resultados',
     lessons: 'Lecciones aprendidas',
     availability: 'Disponibilidad',
     languageSwitch: 'Cambiar idioma',
     themeToggle: 'Cambiar tema',
     resumePdfSoon: 'PDF disponible pronto',
-    mobileMenu: 'Abrir menu',
-    closeMenu: 'Cerrar menu',
+    mobileMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
   },
   meta: {
     home: {
@@ -68,100 +68,100 @@ export const es: Dictionary = {
     systems: {
       title: 'Sistemas y Arquitectura | Reynaldo Sánchez',
       description:
-        'Como diseno sistemas confiables: arquitectura modular, integraciones resilientes y visibilidad operativa.',
+        'Cómo diseño sistemas confiables: arquitectura modular, integraciones resilientes y visibilidad operativa.',
     },
     flutter: {
       title: 'Especialidad Flutter | Reynaldo Sánchez',
       description:
-        'Especialista Flutter con experiencia real en produccion: arquitectura, rendimiento e integraciones.',
+        'Especialista Flutter con experiencia real en producción: arquitectura, rendimiento e integraciones.',
     },
     projects: {
       title: 'Proyectos Seleccionados | Reynaldo Sánchez',
-      description: 'Casos cortos enfocados en decisiones de arquitectura, ejecucion e impacto operativo.',
+      description: 'Casos cortos enfocados en decisiones de arquitectura, ejecución e impacto operativo.',
     },
     contact: {
       title: 'Trabajemos Juntos | Reynaldo Sánchez',
-      description: 'Colaboracion remota e internacional para entrega fullstack con enfoque Flutter-first.',
+      description: 'Colaboración remota e internacional para entrega fullstack con enfoque Flutter-first.',
     },
     notFound: {
-      title: 'Pagina no encontrada | Reynaldo Sánchez',
-      description: 'La pagina que buscas no esta disponible.',
+      title: 'Página no encontrada | Reynaldo Sánchez',
+      description: 'La página que buscas no está disponible.',
     },
   },
   home: {
     hero: {
-      title: 'Desarrollador fullstack listos para produccion: UX Flutter-first, APIs confiables e integraciones reales.',
-      subline: 'Ingenieria orientada a negocio: arquitectura, ejecucion y resultados.',
+      title: 'Desarrollador fullstack listo para producción: UX Flutter-first, APIs confiables e integraciones reales.',
+      subline: 'Ingeniería orientada a negocio: arquitectura, ejecución y resultados.',
       constellationTitle: 'Mi stack',
       paragraph:
-        '15 anos en TI entre soporte, operaciones, QA, desarrollo y arquitectura de sistemas. Construyo software que funciona bajo presion operativa.',
+        '15 años en TI entre soporte, operaciones, QA, desarrollo y arquitectura de sistemas. Construyo software que funciona bajo presión operativa.',
       proofChips: ['Flutter-first', 'Fullstack', 'Integraciones ERP/POS', 'Offline-ready'],
     },
     pillars: {
       title: 'Lo que recibes al trabajar conmigo',
       items: [
         {
-          title: 'Ejecucion rapida con disciplina',
-          points: ['De requerimiento a produccion con ownership claro.', 'Ciclos cortos sin sacrificar confiabilidad.'],
+          title: 'Ejecución rápida con disciplina',
+          points: ['De requerimiento a producción con ownership claro.', 'Ciclos cortos sin sacrificar confiabilidad.'],
         },
         {
           title: 'Arquitectura que escala',
-          points: ['Limites modulares, contratos explicitos y trazabilidad.', 'Pensado para operacion real, no solo demos.'],
+          points: ['Límites modulares, contratos explícitos y trazabilidad.', 'Pensado para operación real, no solo demos.'],
         },
         {
           title: 'Entrega alineada a negocio',
-          points: ['Menor friccion operativa para equipos.', 'Sistemas que mejoran decision y autonomia.'],
+          points: ['Menor fricción operativa para equipos.', 'Sistemas que mejoran decisión y autonomía.'],
         },
       ],
     },
     strengths: {
       title: 'Fortalezas diferenciales',
       paragraph:
-        'Combinacion solida de vision de producto, pensamiento de sistemas y ejecucion hands-on en app, backend, data e integraciones.',
-      chips: ['Flutter', '.NET APIs', 'SQL Server', 'Azure', 'Automatizacion', 'Bots n8n', 'Flujos OpenAI'],
+        'Combinación sólida de visión de producto, pensamiento de sistemas y ejecución hands-on en app, backend, data e integraciones.',
+      chips: ['Flutter', '.NET APIs', 'SQL Server', 'Azure', 'Automatización', 'Bots n8n', 'Flujos OpenAI'],
     },
     featured: {
       title: 'Trabajo seleccionado',
     },
     credibility: {
-      title: 'Resumen rapido',
+      title: 'Resumen rápido',
       metrics: [
-        { value: '15+', label: 'Anos en TI' },
+        { value: '15+', label: 'Años en TI' },
         { value: '9 sedes', label: 'Rollouts multi-sucursal' },
-        { value: 'ERP/POS', label: 'Integraciones en produccion' },
-        { value: 'Remoto', label: 'Colaboracion internacional' },
+        { value: 'ERP/POS', label: 'Integraciones en producción' },
+        { value: 'Remoto', label: 'Colaboración internacional' },
       ],
     },
     finalCta: {
-      title: 'Buscas un ingeniero que disene y entregue end-to-end?',
+      title: '¿Buscas un ingeniero que diseñe y entregue end-to-end?',
     },
   },
   systems: {
     hero: {
       title: 'Pensamiento de sistemas que se entrega.',
-      subline: 'Arquitectura confiable donde UX, datos y operacion permanecen alineados.',
+      subline: 'Arquitectura confiable donde UX, datos y operación permanecen alineados.',
       cta: 'Ver evidencia en proyectos',
     },
     playbook: {
       title: 'Playbook de arquitectura',
       cards: [
         {
-          title: 'Diseno modular',
-          points: ['Limites de feature y ownership claro.', 'Cambios mas rapidos con menos riesgo de regresion.'],
+          title: 'Diseño modular',
+          points: ['Límites de feature y ownership claro.', 'Cambios más rápidos con menos riesgo de regresión.'],
           chips: ['Flutter', 'Modularidad', 'Mantenibilidad'],
         },
         {
-          title: 'Contratos de integracion',
+          title: 'Contratos de integración',
           points: ['APIs contract-first con estrategia de versionado.', 'Reintentos seguros y comportamiento predecible.'],
           chips: ['REST', 'Versionado', 'Idempotencia'],
         },
         {
           title: 'Resiliencia operativa',
-          points: ['Logs estructurados, trace IDs y health checks.', 'Manejo de fallos como parte central del diseno.'],
+          points: ['Logs estructurados, trace IDs y health checks.', 'Manejo de fallos como parte central del diseño.'],
           chips: ['Observabilidad', 'SLA', 'Confiabilidad'],
         },
         {
-          title: 'Bucles de automatizacion',
+          title: 'Bucles de automatización',
           points: ['Alertas, workflows y controles recurrentes.', 'Menos carga manual para soporte y operaciones.'],
           chips: ['n8n', 'PowerShell', 'Teams'],
         },
@@ -174,17 +174,17 @@ export const es: Dictionary = {
           title: 'Quantix -> cliente C# -> .NET -> Azure SQL',
           decisions: [
             'Modelo multiempresa y multisucursal en una sola plataforma.',
-            'Modulos core para inventario, facturacion, reporteria y catalogos.',
+            'Módulos core para inventario, facturación, reportería y catálogos.',
             'Azure SQL Database como base central en la nube.',
-            'Configuracion por empresa sin duplicar el sistema.',
+            'Configuración por empresa sin duplicar el sistema.',
           ],
           anchor: 'quantix-multi-company-core',
         },
         {
           title: 'Open Statement -> insuficiencias -> post guard',
           decisions: [
-            'Accion Insufficiencies dentro de Open Statement.',
-            'Setup para activar bloqueo y reglas del modulo.',
+            'Acción Insufficiencies dentro de Open Statement.',
+            'Setup para activar bloqueo y reglas del módulo.',
             'Codeunit guard antes de Post Statement.',
             'Lista detallada por statement para corregir inventario.',
           ],
@@ -197,13 +197,13 @@ export const es: Dictionary = {
       columns: [
         {
           title: 'Frontend',
-          why: 'Flutter para iteracion rapida de producto y UX consistente.',
+          why: 'Flutter para iteración rápida de producto y UX consistente.',
           chips: ['Flutter', 'Design System', 'Responsive'],
-          tradeoff: 'Equilibrio entre detalle visual y limites mantenibles.',
+          tradeoff: 'Equilibrio entre detalle visual y límites mantenibles.',
         },
         {
           title: 'Backend',
-          why: 'APIs .NET e integraciones con contratos explicitos y comportamiento predecible.',
+          why: 'APIs .NET e integraciones con contratos explícitos y comportamiento predecible.',
           chips: ['ASP.NET Core', 'REST', 'Integraciones'],
           tradeoff: 'Preferir contratos claros sobre implementaciones de atajo.',
         },
@@ -216,13 +216,13 @@ export const es: Dictionary = {
       ],
     },
     finalCta: {
-      title: 'Quieres evidencia de implementacion? Revisa los casos.',
+      title: '¿Quieres evidencia de implementación? Revisa los casos.',
     },
   },
   flutter: {
     hero: {
-      title: 'Especialista Flutter. Ejecucion orientada a producto.',
-      subline: 'Arquitectura, rendimiento y patrones de integracion probados en produccion.',
+      title: 'Especialista Flutter. Ejecución orientada a producto.',
+      subline: 'Arquitectura, rendimiento y patrones de integración probados en producción.',
       cta: 'Ver proyectos Flutter',
     },
     modules: {
@@ -230,18 +230,18 @@ export const es: Dictionary = {
       items: [
         {
           title: 'Arquitectura de app',
-          points: ['Estructura por features con limites limpios.', 'Ownership escalable para productos vivos.'],
+          points: ['Estructura por features con límites limpios.', 'Ownership escalable para productos vivos.'],
         },
         {
           title: 'Manejo de estado',
-          points: ['Flujo de datos predecible y mantenible.', 'Bloc o Riverpod segun restricciones del caso.'],
+          points: ['Flujo de datos predecible y mantenible.', 'Bloc o Riverpod según restricciones del caso.'],
         },
         {
           title: 'Performance y UX',
-          points: ['Optimizaciones guiadas por profiling.', 'Interaccion fluida en dispositivos moviles.'],
+          points: ['Optimizaciones guiadas por profiling.', 'Interacción fluida en dispositivos móviles.'],
         },
         {
-          title: 'Patrones de integracion',
+          title: 'Patrones de integración',
           points: ['Auth, secure storage y orquestacion backend.', 'Colas offline y sync resiliente cuando aplica.'],
         },
       ],
@@ -257,7 +257,7 @@ export const es: Dictionary = {
   },
   projects: {
     hero: {
-      title: 'Proyectos seleccionados para operacion real.',
+      title: 'Proyectos seleccionados para operación real.',
       subline: 'Casos concretos con decisiones de arquitectura y resultados medibles.',
     },
   },
@@ -268,13 +268,13 @@ export const es: Dictionary = {
     },
     linksTitle: 'Canales directos',
     availability: {
-      text: 'Disponible para roles remotos full-time, contratos y consultoria de alta responsabilidad.',
-      chips: ['Fullstack', 'Flutter', 'Integraciones', 'Automatizacion'],
+      text: 'Disponible para roles remotos full-time, contratos y consultoría de alta responsabilidad.',
+      chips: ['Fullstack', 'Flutter', 'Integraciones', 'Automatización'],
     },
   },
   notFound: {
-    title: 'Pagina no encontrada',
-    body: 'La pagina solicitada no esta disponible.',
+    title: 'Página no encontrada',
+    body: 'La página solicitada no está disponible.',
     cta: 'Ir al inicio',
   },
 };

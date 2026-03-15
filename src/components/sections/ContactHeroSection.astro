@@ -14,11 +14,11 @@ const proofChips = isEs
   ? ['Remoto', 'Internacional', 'WhatsApp-ready', 'Flutter-first']
   : ['Remote', 'International', 'WhatsApp-ready', 'Flutter-first'];
 
-const panelKicker = isEs ? 'Canal recomendado segun contexto' : 'Recommended channel by context';
+const panelKicker = isEs ? 'Canal recomendado según contexto' : 'Recommended channel by context';
 const panelRows = [
   {
     title: 'WhatsApp',
-    detail: isEs ? 'Contacto agil para primeras conversaciones y coordinacion rapida.' : 'Fast first contact and quick coordination.',
+    detail: isEs ? 'Contacto ágil para primeras conversaciones y coordinación rápida.' : 'Fast first contact and quick coordination.',
     brand: '#25d366',
   },
   {
@@ -28,7 +28,7 @@ const panelRows = [
   },
   {
     title: isEs ? 'LinkedIn + GitHub' : 'LinkedIn + GitHub',
-    detail: isEs ? 'Contexto profesional y evidencia tecnica en paralelo.' : 'Professional context and technical proof side by side.',
+    detail: isEs ? 'Contexto profesional y evidencia técnica en paralelo.' : 'Professional context and technical proof side by side.',
     brand: '#2f7df6',
   },
 ];
@@ -86,16 +86,16 @@ const panelRows = [
 
 <style>
   .contact-hero {
-    padding-top: clamp(2.2rem, 5vw, 4rem);
+    padding-top: var(--section-space-first);
   }
 
   .hero-shell {
     position: relative;
     overflow: hidden;
-    padding: clamp(1.2rem, 3vw, 1.85rem);
+    padding: var(--surface-padding-lg);
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(1.2rem, 3vw, 2rem);
+    gap: var(--layout-gap);
     align-items: stretch;
   }
 
@@ -119,25 +119,26 @@ const panelRows = [
     width: fit-content;
     padding: 0.28rem 0.78rem;
     border-radius: var(--radius-pill);
-    border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--stroke));
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    color: var(--card-text-muted);
+    border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--stroke));
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--card-text-0);
     font-family: var(--font-mono);
     font-size: 0.76rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   .contact-proof {
-    gap: 0.7rem;
+    gap: var(--cluster-gap);
   }
 
   .proof-chip {
     padding: 0.34rem 0.72rem;
     border-radius: var(--radius-pill);
     border: 1px solid var(--stroke);
-    background: color-mix(in srgb, var(--card) 82%, transparent);
-    color: var(--card-text-1);
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    color: var(--card-text-0);
     font-size: 0.82rem;
     font-weight: 600;
   }
@@ -154,7 +155,7 @@ const panelRows = [
 
   .panel-card {
     min-height: 100%;
-    padding: clamp(1rem, 2.5vw, 1.35rem);
+    padding: var(--surface-padding);
     border-radius: var(--radius-lg);
     border: 1px solid color-mix(in srgb, var(--stroke) 88%, transparent);
     background:
@@ -191,9 +192,9 @@ const panelRows = [
   .panel-row {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 0.85rem;
+    gap: var(--space-3);
     align-items: start;
-    padding: 0.9rem;
+    padding: var(--surface-padding-sm);
     border-radius: var(--radius-md);
     border: 1px solid color-mix(in srgb, var(--brand) 18%, var(--stroke));
     background: color-mix(in srgb, var(--card) 84%, transparent);
@@ -204,7 +205,7 @@ const panelRows = [
     width: 0.78rem;
     height: 0.78rem;
     border-radius: 999px;
-    margin-top: 0.22rem;
+    margin-top: var(--space-1);
     background: var(--brand);
     box-shadow:
       0 0 0 6px color-mix(in srgb, var(--brand) 14%, transparent),

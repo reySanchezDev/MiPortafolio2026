@@ -49,7 +49,7 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
                 <header class="stack-4">
                   <div class="top-row">
                     <h3>{translateText(project.title, locale)}</h3>
-                    {project.id !== 'quantix-multi-company-core' && (
+                    {!['quantix-multi-company-core', 'ls-central-statement-insufficiency-control'].includes(project.id) && (
                       <div class="chip-row">
                         {project.categories.map((category) => <Badge>{dict.filters[category]}</Badge>)}
                       </div>
@@ -222,14 +222,15 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     overflow: hidden;
     border-radius: var(--radius-pill);
     border: 1px solid var(--stroke);
-    background: color-mix(in srgb, var(--card) 84%, transparent);
-    color: var(--text-1);
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    color: var(--card-text-0);
     font-weight: 600;
     padding: 0.45rem 0.95rem;
     transition:
       border-color var(--motion-fast) var(--motion-ease),
-      background-color var(--motion-fast) var(--motion-ease),
-      color var(--motion-fast) var(--motion-ease);
+      background var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease),
+      box-shadow var(--motion-fast) var(--motion-ease);
   }
 
   .filter-chip::before {
@@ -241,9 +242,17 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     transition: transform 420ms var(--motion-ease);
   }
 
+  .filter-chip:hover,
+  .filter-chip:focus-visible {
+    border-color: var(--stroke-strong);
+    background: color-mix(in srgb, var(--card) 98%, color-mix(in srgb, var(--accent) 8%, transparent));
+    color: var(--text-0);
+    box-shadow: 0 10px 22px rgba(8, 19, 35, 0.1);
+  }
+
   .filter-chip.active {
     border-color: color-mix(in srgb, var(--accent) 64%, white 36%);
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
     color: var(--text-0);
   }
 
@@ -294,7 +303,7 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     padding-left: 1.1rem;
     color: var(--text-1);
     display: grid;
-    gap: 0.34rem;
+    gap: var(--list-gap);
   }
 
   .cta-row {
@@ -307,7 +316,7 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
   .case-study {
     border: 1px solid var(--stroke);
     border-radius: var(--radius-md);
-    padding: var(--space-3) var(--space-4);
+    padding: var(--surface-padding-sm);
     background: color-mix(in srgb, var(--card) 84%, transparent);
   }
 
@@ -315,11 +324,22 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
     cursor: pointer;
     font-weight: 600;
     color: var(--text-0);
+    text-decoration: underline transparent;
+    text-underline-offset: 0.22rem;
+    transition:
+      color var(--motion-fast) var(--motion-ease),
+      text-decoration-color var(--motion-fast) var(--motion-ease);
+  }
+
+  .case-study summary:hover,
+  .case-study summary:focus-visible {
+    color: var(--card-text-0);
+    text-decoration-color: color-mix(in srgb, var(--accent) 72%, transparent);
   }
 
   .case-study-media {
     margin-top: var(--space-4);
-    padding: clamp(0.95rem, 2vw, 1.15rem);
+    padding: var(--surface-padding-sm);
     border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--stroke));
     border-radius: var(--radius-md);
     background:
@@ -343,7 +363,7 @@ const categories: ProjectCategory[] = ['all', 'flutter', 'backend', 'automation'
 
   .case-study-media-kicker {
     margin: 0;
-    color: color-mix(in srgb, var(--accent-2) 62%, var(--text-1));
+    color: color-mix(in srgb, var(--accent-2) 22%, var(--card-text-0) 78%);
     font-family: var(--font-mono);
     font-size: 0.74rem;
     letter-spacing: 0.08em;

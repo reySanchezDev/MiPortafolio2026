@@ -108,7 +108,7 @@ export const techNodes: TechNode[] = [
     label: 'Flutter',
     description: copy(
       'Primary product layer for fast cross-platform apps with consistent UX.',
-      'Capa principal de producto para apps multiplataforma rapidas con UX consistente.',
+      'Capa principal de producto para apps multiplataforma rápidas con UX consistente.',
     ),
     x: 16,
     y: 22,
@@ -124,7 +124,7 @@ export const techNodes: TechNode[] = [
     label: 'Astro',
     description: copy(
       'Marketing and content shell with fast static delivery.',
-      'Capa de marketing y contenido con entrega estatica rapida.',
+      'Capa de marketing y contenido con entrega estática rápida.',
     ),
     x: 29,
     y: 16,
@@ -140,7 +140,7 @@ export const techNodes: TechNode[] = [
     label: 'HTML5',
     description: copy(
       'Semantic structure for landing pages and content modules.',
-      'Estructura semantica para landing pages y modulos de contenido.',
+      'Estructura semántica para landing pages y módulos de contenido.',
     ),
     x: 49,
     y: 12,
@@ -172,7 +172,7 @@ export const techNodes: TechNode[] = [
     label: 'JavaScript',
     description: copy(
       'Client-side behaviors for interactions, state, and UI glue.',
-      'Comportamiento del cliente para interacciones, estado y logica de UI.',
+      'Comportamiento del cliente para interacciones, estado y lógica de UI.',
     ),
     x: 76,
     y: 27,
@@ -189,7 +189,7 @@ export const techNodes: TechNode[] = [
     label: 'TypeScript',
     description: copy(
       'Safer frontend logic with clearer contracts and maintainability.',
-      'Logica de frontend mas segura con contratos claros y mejor mantenibilidad.',
+      'Lógica de frontend más segura con contratos claros y mejor mantenibilidad.',
     ),
     x: 80,
     y: 44,
@@ -207,7 +207,7 @@ export const techNodes: TechNode[] = [
     label: 'C#',
     description: copy(
       'Main language for backend logic, integrations, and business rules.',
-      'Lenguaje principal para logica backend, integraciones y reglas de negocio.',
+      'Lenguaje principal para lógica backend, integraciones y reglas de negocio.',
     ),
     x: 58,
     y: 63,
@@ -227,7 +227,7 @@ export const techNodes: TechNode[] = [
     label: '.NET',
     description: copy(
       '.NET stack for APIs, services, and production-grade backend delivery.',
-      'Stack .NET para APIs, servicios y entrega backend lista para produccion.',
+      'Stack .NET para APIs, servicios y entrega backend lista para producción.',
     ),
     x: 68,
     y: 78,
@@ -334,7 +334,7 @@ export const techNodes: TechNode[] = [
     label: 'Chatfuel',
     description: copy(
       'Conversational automation layer for bots, chat experiences, and lead flows.',
-      'Capa de automatizacion conversacional para bots, experiencias de chat y flujos de leads.',
+      'Capa de automatización conversacional para bots, experiencias de chat y flujos de leads.',
     ),
     x: 34,
     y: 57,
@@ -353,7 +353,7 @@ export const techNodes: TechNode[] = [
     label: 'n8n',
     description: copy(
       'Workflow automation for bots, integrations, and internal operational processes.',
-      'Automatizacion de flujos para bots, integraciones y procesos operativos internos.',
+      'Automatización de flujos para bots, integraciones y procesos operativos internos.',
     ),
     x: 24,
     y: 63,
@@ -429,7 +429,7 @@ export const techNodes: TechNode[] = [
     label: 'Outlook',
     description: copy(
       'Messaging endpoint for notifications, routing, and user communication.',
-      'Canal de mensajeria para notificaciones, ruteo y comunicacion con usuarios.',
+      'Canal de mensajería para notificaciones, ruteo y comunicación con usuarios.',
     ),
     x: 84,
     y: 60,
@@ -471,7 +471,7 @@ export const techNodes: TechNode[] = [
     label: 'Copilot',
     description: copy(
       'AI assistance for faster implementation, drafting, and technical exploration.',
-      'Asistencia de IA para implementar, redactar y explorar soluciones mas rapido.',
+      'Asistencia de IA para implementar, redactar y explorar soluciones más rápido.',
     ),
     x: 53,
     y: 29,

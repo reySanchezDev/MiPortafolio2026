@@ -57,13 +57,13 @@ const { title, items, relatedLabel, locale } = Astro.props;
     padding-left: 1.1rem;
     color: var(--text-1);
     display: grid;
-    gap: 0.35rem;
+    gap: var(--list-gap);
   }
 
   .diagram {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: var(--cluster-gap);
     align-items: center;
   }
 

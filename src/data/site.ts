@@ -9,8 +9,6 @@ export const siteConfig: SiteConfig = {
   locales: ['en', 'es'],
   nav: [
     { key: 'overview', slug: '' },
-    { key: 'systems', slug: 'systems' },
-    { key: 'flutter', slug: 'flutter' },
     { key: 'projects', slug: 'projects' },
     { key: 'contact', slug: 'contact' },
   ],

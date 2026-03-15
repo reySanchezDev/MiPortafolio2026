@@ -1,7 +1,7 @@
 export const en = {
   localeCode: 'en',
   localeName: 'English',
-  otherLocaleName: 'Espanol',
+  otherLocaleName: 'Español',
   skipToContent: 'Skip to content',
   nav: {
     overview: 'Overview',

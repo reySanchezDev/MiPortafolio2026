@@ -24,7 +24,7 @@ const { padded = true } = Astro.props;
       border-color var(--motion-base) var(--motion-ease),
       transform var(--motion-base) var(--motion-ease),
       box-shadow var(--motion-base) var(--motion-ease),
-      background-color var(--motion-base) var(--motion-ease);
+      background var(--motion-base) var(--motion-ease);
   }
 
   .card::before {
@@ -89,22 +89,25 @@ const { padded = true } = Astro.props;
   }
 
   .card.padded {
-    padding: clamp(1rem, 2.2vw, 1.4rem);
+    padding: var(--card-padding);
   }
 
-  .card:hover {
-    transform: translateY(-3px);
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-2px);
     border-color: var(--stroke-strong);
     box-shadow: var(--shadow-lift);
-    background: color-mix(in srgb, var(--card) 90%, #ffffff 10%);
+    background: color-mix(in srgb, var(--card) 94%, #ffffff 6%);
   }
 
-  .card:hover::before {
+  .card:hover::before,
+  .card:focus-within::before {
     opacity: 0.68;
     transform: translate(-50%, -50%) rotate(34deg) scale(1.06);
   }
 
-  .card:hover::after {
+  .card:hover::after,
+  .card:focus-within::after {
     opacity: 0.24;
   }
 
