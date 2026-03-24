@@ -98,11 +98,17 @@ const compact = !secondary;
   }
 
   .banner.is-compact h2 {
-    max-width: 20ch;
+    max-width: none;
+    white-space: nowrap;
     font-size: clamp(1.45rem, 2.2vw, 1.85rem);
   }
 
   @media (max-width: 680px) {
+    .banner.is-compact h2 {
+      white-space: normal;
+      text-wrap: balance;
+    }
+
     .row {
       display: grid;
       grid-template-columns: 1fr;
