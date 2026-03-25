@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
   contact: {
     email: 'mailto:reynaldv12@gmail.com',
     booking: 'https://calendly.com/',
-    github: 'https://github.com/reynaldtwo',
+    github: 'https://github.com/reySanchezDev',
     linkedin: 'https://www.linkedin.com/in/reynaldo-s%C3%A1nchez-hern%C3%A1ndez/',
     whatsapp: 'https://wa.me/50585213462',
   },

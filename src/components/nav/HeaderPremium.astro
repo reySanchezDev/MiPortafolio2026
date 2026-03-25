@@ -158,6 +158,10 @@ const calendlyIconPath =
           </span>
         </Button>
       </div>
+      <div class="mobile-controls">
+        <LanguageSwitch locale={locale} pathname={pathname} label={dict.labels.languageSwitch} />
+        <ThemeToggle label={dict.labels.themeToggle} />
+      </div>
     </div>
   </div>
 </header>
@@ -947,6 +951,21 @@ const calendlyIconPath =
     }
   }
 
+  .mobile-controls {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: var(--space-4);
+    border-top: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 560px) {
+    .mobile-controls {
+      display: flex;
+    }
+  }
   @media (max-width: 1280px) {
     .brand {
       gap: 0.62rem;
@@ -988,7 +1007,7 @@ const calendlyIconPath =
   @media (max-width: 1240px) {
     .desktop-nav,
     .desktop-cta {
-      display: none;
+      display: none !important;
     }
 
     .nav-shell {
@@ -1007,6 +1026,35 @@ const calendlyIconPath =
   @media (max-width: 560px) {
     .brand-copy small {
       display: none;
+    }
+
+    .nav-shell {
+      min-height: 3.6rem;
+      justify-content: space-between;
+      padding-inline: 0.5rem;
+    }
+
+    .brand {
+      gap: 0.5rem;
+    }
+
+    .brand-copy strong {
+      font-size: 0.88rem;
+    }
+
+    .actions :global(.lang-switch),
+    .actions :global(.theme-btn) {
+      display: none !important;
+    }
+
+    .desktop-cluster {
+      gap: 0.3rem;
+    }
+
+    .menu-btn {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 0.85rem;
     }
   }
 
