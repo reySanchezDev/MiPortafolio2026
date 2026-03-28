@@ -9,7 +9,6 @@ import {
   siFlutter,
   siGithubcopilot,
   siGit,
-  siGoogle,
   siGooglecloud,
   siHtml5,
   siJavascript,
@@ -139,7 +138,7 @@ export const techNodes: TechNode[] = [
     dy: 1,
     group: 'core',
     priority: 'hero',
-    icon: siGoogle,
+    iconSrc: '/icons/brands/google.svg',
     showOnMobile: true,
   },
   {
